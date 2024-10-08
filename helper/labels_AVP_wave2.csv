@@ -1,0 +1,106 @@
+name,description
+age,Voter Age
+vote_2020,Voted in 2020
+vote_trump,Presidential vote in 2020
+vote_2022,Voted in 2022
+vote_2022_type,Ballot type cast
+vote_senate,Senate vote in 2022
+vote_gov,Governor vote in 2022
+vote_sos,SoS vote in 2022
+primary_type,Ballot type cast in 2022 Primary
+primary_rep,Voted in Republican or Democratic Primary
+primary_rep_gov,Vote in 2022 Republican Governor Primary
+primary_dem_gov,Vote in 2022 Democratic Governor Primary
+primary_rep_senate,Vote in 2022 Republican Senate Primary
+senate_alignment,Rank order: Alignment with candidate
+senate_ofparty,Rank order:  From my political party
+senate_likedthem,Rank order: Like the candidate
+senate_dislikedother,Rank order: Dislike the opposition
+senate_thepast,Rank order: Past record
+governor_alignment,Rank order: Alignment with candidate
+governor_ofparty,Rank order:  From my political party
+governor_likedthem,Rank order: Like the candidate
+governor_dislikedother,Rank order: Dislike the opposition
+governor_thepast,Rank order: Past record
+sos_alignment,Rank order: Alignment with candidate
+sos_ofparty,Rank order:  From my political party
+sos_likedthem,Rank order: Like the candidate
+sos_dislikedother,Rank order: Dislike the opposition
+sos_thepast,Rank order: Past record
+biden_ft,Feelings: Biden
+trump_ft,Feelings: Trump
+lake_ft,Feelings: Lake
+masters_ft,Feelings: Masters
+hobbs_ft,Feelings: Hobbs
+kelly_ft,Feelings: Kelly
+finchem_ft,Feelings: Finchem
+establishment_republican_feelings,Feelings:  Establishment Republicans
+maga_republican_feelings,Feelings: MAGA Republians
+establishment_democrat_feelings,Feelings: Establishment Democrats
+progressive_democrat_feelings,Feelings: Progressive Democrats
+biden_economy,Biden has made the economy worse
+cali_migration,Oppose California Migration
+immigration_rate,Immigration should decrease
+separate_parents,Oppose ending separation of children at border
+legal_status,Oppose granting legal  status to all undocumented immigratns
+citizen,End the policy of granting citizenship
+smart_border,Increase spending on smart technology
+water_supply,Water supply in the state is a problem
+limit_water,Limit the amount of water usage per housefhold
+tax_water,Oppose taxing excessive water usage
+reduce_water,Reduce water consumption
+background_guns,Oppose mandatory background checks
+registry_guns,Oppose establishing a national gun registry
+age_guns,Oppose raising the age of ownership to 21
+assault_guns,Support purchasing and owning assault rifles
+abortion_legal,Abortion legality
+abortion_jail,Prison sentence of two to five years for abortion providers
+violent_crime_importance,Concern about violent crime
+border_wall,Support building a southern border wall
+law_at_border,Increase law enforcement at border
+attend_march,Electoral contestation - Attend March
+criticize_election,Electoral contestation - Publicly criticize the integrity and fairness of the election
+burn_flag,Electoral contestation - Burn the American flag
+recount,Electoral contestation - Support ballot recounts
+court,Electoral contestation - Contest the outcomes in court
+certify,Electoral contestation - Public officials choosing to certify the election results
+concede,Electoral contestation - Refusing to concede an electoral defeat
+state_certify,Electoral contestation - State legislators refusing to certify election results
+violent,Electoral contestation - Engage in violent protest
+new_election,Electoral contestation - Call a new election
+stolen_2020,The 2020 election was stolen
+free_and_fair,"Confidence that the 2022 election was ""free and fair"""
+vote_confidence,Confidence that ballot was accurately counted
+violence,Concern about violence when voting
+auth_1,Independence or Respect
+auth_2,Curiosity or Good Manners
+auth_3,Obedience or Self Reliance
+auth_4,Considerate or Well Behaved
+authoritarianism,Authoritarianism Score
+rr1,Minority groups have gotten less than they deserve*
+rr2,Minority groups shouldn't get special favors
+rr3,Minority groups could be just as well off as Whites
+rr4,Discrimination of Whites
+racial_resentment,Racial Resentment Score
+trust_media,Trust in media
+political_interest,interest in politics
+az_10years,Lived in Arizona for 10+ years
+black,Black
+white,White
+hispanic,Latino
+asian,Asian
+american_indian,American Indian
+other,Other
+zipcode,Zipcode
+married,Married
+female,Female
+college,College 
+faminc,Family Income
+kids_in_home,Number of kids in home
+pid7,7 point PID
+christian,Christian identifier
+vote2016,Candidate vote in 2016
+ideology,5 point ideology
+rid,
+party3 ,3 point PID
+caseid,Case identifier

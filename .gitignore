@@ -1,0 +1,10 @@
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+dat
+credentials.env
+big_query.py
+dat
+credentials.env
+.venv

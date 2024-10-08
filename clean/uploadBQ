@@ -1,0 +1,103 @@
+from google.oauth2 import service_account
+import requests
+import json
+import pandas_gbq
+import time
+import os
+from dotenv import load_dotenv
+import pandas as pd
+
+
+os.chdir("/Users/Chris/Dropbox/github_repos/avp-survey-data/public_opinion/")
+
+
+load_dotenv('credentials.env')
+
+# Google Cloud authentication (if needed)
+credentials = service_account.Credentials.from_service_account_file(
+    os.getenv('GOOGLE_APPLICATION_CREDENTIALS'),
+    scopes=["https://www.googleapis.com/auth/cloud-platform"]
+)
+
+long  = pd.read_csv(
+    "/Users/Chris/Dropbox/github_repos/avp-survey-data/public_opinion/dat/avp_w1w2_long.csv")
+
+pd.read_csv("avp_w1w2_long.csv")
+
+# Extract the unique names in column "names"
+unique_names = pd.DataFrame(long["name"].unique())
+
+# Information about variabels
+var_details = pd.read_table(
+  "/Users/Chris/Dropbox/github_repos/avp-survey-data/public_opinion/helper/w1w2_key.txt", encoding = 'latin1')
+
+question_party_total = long.groupby(
+    ["name", "party3"]).rid.count().reset_index()
+
+question_data = long[long["name"].isin(var_details['name'])]
+question_summaries = question_data.groupby(
+    ["name", "party3", "value"]).rid.count().reset_index()
+
+question_summaries = question_summaries.merge(
+    question_party_total, how="left", on=["name", "party3"])
+
+
+question_summaries["question_party_percent"] = question_summaries.rid_x / \
+    question_summaries.rid_y
+
+
+
+
+var_details = {
+    # WATER
+    "limit_water": {
+        "question": "To what extent do you support mandatory water conservation strategies, such as limiting the  amount of water usage per household?",
+        "answers": ["Strongly Oppose", "Oppose", "Not Sure", "Support", "Strongly Support"]
+    },
+    "water_supply": {
+        "question": "Arizona, like other southwestern states, is facing cuts to its water supply. To what extent do you believe that the water supply in the state is a problem? ",
+        "answers": ["Not A Problem / Not Sure", "Somewhat Serious Problem", "Very Serious Problem", "Extremely Serious Problem"],
+    },
+    "tax_water": {
+        "question": "To what extent do you support mandatory water conservation strategies, such as taxing excessive water usage?",
+        "answers": ["Strongly Oppose", "Oppose", "Not Sure", "Support", "Strongly Support"]
+    },
+    "reduce_water": {
+        "question": "How likely is it that you will voluntarily reduce your own water consumption in the next 12 months, such as taking shorter showers, watering your lawn and plants less frequently?",
+        "answers": ["Not At All Likely", "Not Likely", "Not Sure", "Likely", "Very Likely"]
+    },
+    # GUNS
+    # "reduce_wateasdfr": {
+    #     "question": "How likely is it that you will voluntarily reduce your own water consumption in the next 12 months, such as taking shorter showers, watering your lawn and plants less frequently?",
+    #     "answers": ["Not At All Likely", "Not Likely", "Not Sure", "Likely", "Very Likely"]
+    # }
+}
+
+
+long = pd.read_csv("avp_wave_1_long.csv")
+long = long[long["Party"] != "OTR"]
+question_party_total = long.groupby(
+    ["name", "Party"]).caseid.count().reset_index()
+
+
+
+wave1_names <- names(w1_wide)
+
+w2_long =  pd.read_csv("~/Dropbox/github_repos/avp-survey-data/public_opinion/dat/avp_wave_2_long.csv")
+
+w2_wide =  pd.read_csv("~/Dropbox/github_repos/avp-survey-data/public_opinion/dat/avp_wave_2_wide.csv")
+
+
+
+
+
+
+wave2_names <- names(w2_wide)
+
+#---- Save Data -----#
+western_wide < -  pd.read_csv("~/Dropbox/github_repos/avp-survey-data/public_opinion/dat/datWestern2020_wide.csv")
+
+western_long < -  pd.read_csv("~/Dropbox/github_repos/avp-survey-data/public_opinion/dat/datWestern2020_long.csv")
+# Data Preparation
+dat = pd.read_csv(
+    "/Users/Chris/Dropbox/github_repos/avp-vote-models/avp-vote-models/preML.csv")

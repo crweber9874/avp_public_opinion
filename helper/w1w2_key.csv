@@ -1,0 +1,52 @@
+name,wording,codes,theme
+caseid22,Identifier to link the 2022 data ,,
+vote_,Voted (2022) or Will Vote (2022) in the General Election,"""No"", ""Yes""",voting
+vote_trump_2020,Vote Choice (2020),"""Joe Biden"", ""Donald Trump""",voting
+vote_type,"Do you plan to vote by mail or absentee ballot, vote early in person, or vote in person at your precinct or vote center?","""Absentee-Mail"", ""Absentee-Drop"", ""Early"", ""In person""",voting
+biden_ft,Feeling Thermometer (Biden),"""Mean""",feeling thermometer
+trump_ft,Feeling Thermometer (Trump),"""Mean""",feeling thermometer
+lake_ft,Feeling Thermometer (Lake),"""Mean""",feeling thermometer
+kelly_ft,Feeling Thermometer (Kelly),"""Mean""",feeling thermometer
+establishment_republican_feelings,Feeling Thermometer (Establishment Republicans),"""Mean""",feeling thermometer
+maga_republican_feelings,Feeling Thermometer (MAGA Republicans),"""Mean""",feeling thermometer
+establishment_democrat_feelings,Feeling Thermometer (Establishment Democrats),"""Mean""",feeling thermometer
+progressive_democrat_feelings,Feeling Thermometer (Progressive Democrats),"""Mean""",feeling thermometer
+immigration_rate,"Some people think the number of immigrants who are allowed into the United States should be decreased a lot, some think the number should be increased a lot, and some think the number should stay the same. How about you? What do you think? The number of immigrants allowed into the U.S. should......","""Increase a Lot"", ""Increase"", ""Stay the Same"", ""Decrease"", ""Decrease a Lot""",immigration
+separate_parents,"Thinking about the issue of immigration, please indicate how much you agree or disagree with the following statement: The U.S. should strive to end the separation of parents and children at the border.","""Strongly Agree"", ""Agree"", ""Stay the Same"", ""Disagree"", ""Strongly Disagree""",immigration
+legal_status,"The United States should grant legal status to all undocumented immigrants who have held jobs and paid taxes for at least 3 years, and not been convicted of any felony crimes.","""Strongly Agree"", ""Agree"", ""Stay the Same"", ""Disagree"", ""Strongly Disagree""",immigration
+citizen,The United States should end the policy of granting citizenship to children of foreign born in the U.S..,"""Strongly Agree"", ""Agree"", ""Stay the Same"", ""Disagree"", ""Strongly Disagree""",immigration
+smart_border,"The United States should increase spending on smart technology, such as drones, to enhance border security.","""Strongly Agree"", ""Agree"", ""Stay the Same"", ""Disagree"", ""Strongly Disagree""",immigration
+mip,"In your opinion, what is the most important problem facing the United States?",,mip
+abortion_legal,"In your opinion, is there any point during pregnancy when abortion should be banned?","""Completely legal at any point"",  ""Abortion only in First Trimester"", ""Abortion in 1rst or 2nd Trimester Only"", ""Abortion Never Legal""",abortion
+abortion_jail,"In Arizona, abortion is illegal and there is a mandatory prison sentence of two to five years for abortion providers. To what extent do you support or oppose this law? ","""Strongly Oppose"", ""Oppose"", ""Not Sure"", ""Support"", ""Strongly Support""",abortion
+border_wall,To what degree do you support or oppose the following policy: Building a wall between the United States and Mexico.,"""Strongly Oppose"", ""Oppose"", ""Not Sure"", ""Support"", ""Strongly Support""",immigration
+attend_march,How much do you support or oppose each of the following behaviors when people are unhappy with the outcome of an election? Attend a march or demonstration,"""Strongly Oppose"", ""Oppose"", ""Not Sure"", ""Support"", ""Strongly Support""",electoral contestation
+criticize_election,Publicly criticize the integrity or fairness of the election ,"""Strongly Oppose"", ""Oppose"", ""Not Sure"", ""Support"", ""Strongly Support""",electoral contestation
+burn_flag,Burn the American flag ,"""Strongly Oppose"", ""Oppose"", ""Not Sure"", ""Support"", ""Strongly Support""",electoral contestation
+recount,Support ballot recounts,"""Strongly Oppose"", ""Oppose"", ""Not Sure"", ""Support"", ""Strongly Support""",electoral contestation
+court,Contest the outcome in the courts,"""Strongly Oppose"", ""Oppose"", ""Not Sure"", ""Support"", ""Strongly Support""",electoral contestation
+certify,Public officials choosing to certify the election results ,"""Strongly Oppose"", ""Oppose"", ""Not Sure"", ""Support"", ""Strongly Support""",electoral contestation
+concede,Refusing to concede an election defeat,"""Strongly Oppose"", ""Oppose"", ""Not Sure"", ""Support"", ""Strongly Support""",electoral contestation
+state_certify,State legislators refusing to certify the election results ,"""Strongly Oppose"", ""Oppose"", ""Not Sure"", ""Support"", ""Strongly Support""",electoral contestation
+auth_1,Please tell us which one you think is more important for a child to have:  Independence or respect for elders,"""Independence"", ""Respect for Elders""",authoritarianism
+auth_2,Which one is more important for a child to have:  Curiosity or good manners,"""Curiosity}, ""Good Manners""",authoritarianism
+auth_3,Which one is more important for a child to have:  Obedience or self-reliance,"""Self Reliance"", ""Obedience""",authoritarianism
+auth_4,Which one is more important for a child to have:  Being considerate or well behaved,"""Considerate"", ""Well Behaved""",authoritarianism
+authoritarianism,Composite Authoritarianism Score,"""Mean Authoritarianism Score""",authoritarianism
+trust_media,How much of the time do you think you can trust the media to report the news fairly? ,"""Always"", ""Most of the Times"", ""Some of the time"", ""Almost Never""",interest
+political_interest,"Some people are very interested in politics while other people can’t stand politics, how about you? Are you…","""Very Interested"", ""Somewhat Interested"", ""Not very Interested"", ""Not at all Interested""",interest
+black,Black,,demographics
+white,White,,demographics
+asian,Asian,,demographics
+american_indian,American Indian,,demographics
+other,Other,,demographics
+zipcode,Zipcode,,demographics
+married,Marital Status,,demographics
+female,Female,,demographics
+college,College,,demographics
+faminc,Family Income ,,demographics
+kids_in_home,Children under the age of 18 in the home,,demographics
+christian,Christian identification,,demographics
+vote2016,Vote Choice in the 2016 Election,"""Did Not Vote in the 2016 Election"", ""Voted in the 2020 Election""",voting
+ideology,Ideology,"""Very Liberal"", ""Liberal"", ""Moderate"", ""Conservative"", ""Very Conservative""",voting
+immigration_to_az,Do you agree or disagree with the following: International migration to the state is adversely affecting Arizona.,"""Strongly Disagrree"", ""Disagree"", ""Stay the Same"", ""Agree"", ""Strongly Agree""",immigration
