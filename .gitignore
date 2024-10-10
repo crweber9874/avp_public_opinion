@@ -8,3 +8,4 @@ big_query.py
 dat
 credentials.env
 .venv
+data

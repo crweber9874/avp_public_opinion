@@ -1,6 +1,8 @@
+library(dplyr)
+library(tidyr)
 ## Arizona Voter Survey, Wave 1, 2022
 
-read.csv("~/Dropbox/github_repos/avp-survey-data/avp_public_opinion/data/avp_wave_1_wide.csv") %>%
+read.csv("~/Dropbox/github_repos/avp-survey-data/avpSurvey/avp_public_opinion/data/avp_wave_1_wide.csv") %>%
   select(biden_ft, trump_ft, lake_ft,
          kelly_ft,
          establishment_republican_feelings, 
@@ -50,7 +52,7 @@ avp_w1_wide %>%
 
 ## Arizona Voter Survey, Wave 2, 2024
 
-clean_df = read.csv( "~/Dropbox/github_repos/avp-survey-data/avp_public_opinion/data/avp_wave_2_wide.csv")
+clean_df = read.csv( "~/Dropbox/github_repos/avp-survey-data/avpSurvey/avp_public_opinion/data/avp_wave_2_wide.csv")
 clean_df %>%
   select(conservative3, party_identification3, burn_flag,
          recount, court, certify,
@@ -112,7 +114,7 @@ avp_w1w2 <- right_join(df1, df2, by = "caseid22")
 
 ## Western States Survey, 2020
 
-read.csv("~/Dropbox/github_repos/avp-survey-data/avp_public_opinion/data/datWestern2020_wide.csv") %>%
+read.csv("~/Dropbox/github_repos/avp-survey-data/avpSurvey/avp_public_opinion/data/datWestern2020_wide.csv") %>%
   select( id, conservative3, party_identification3,
           attend_march, burn_flag, court,
           recount, criticize_election,
@@ -137,17 +139,13 @@ western_wide %>%
 
 list(western_long, avp_w1_long, avp_w2_long) %>%
   bind_rows() %>%
-  write.csv(file = "~/Dropbox/github_repos/avp-survey-data/avp_public_opinion/data/avpLong.csv", row.names = FALSE)
+  write.csv(file = "~/Dropbox/github_repos/avp-survey-data/avpSurvey/avp_public_opinion/data/avpLong.csv", row.names = FALSE)
 
 list(western_wide, avp_w1_wide, avp_w2_wide) %>%
   bind_rows() %>%
-  write.csv(file = "~/Dropbox/github_repos/avp-survey-data/avp_public_opinion/data/avpWide.csv", row.names = FALSE)
-
-list(western_wide, avp_w1_wide, avp_w2_wide) %>%
-  bind_rows() %>%
-  write.csv(file = "~/Dropbox/github_repos/avp-survey-data/avp_public_opinion/data/avpWide.csv", row.names = FALSE)
+  write.csv(file = "~/Dropbox/github_repos/avp-survey-data/avpSurvey/avp_public_opinion/data/avpWide.csv", row.names = FALSE)
 
 avp_w1w2 %>%
-  write.csv(file = "~/Dropbox/github_repos/avp-survey-data/avp_public_opinion/data/avpPanel.csv", row.names = FALSE)
+  write.csv(file = "~/Dropbox/github_repos/avp-survey-data/avpSurvey/avp_public_opinion/data/avpPanel.csv", row.names = FALSE)
 
 
