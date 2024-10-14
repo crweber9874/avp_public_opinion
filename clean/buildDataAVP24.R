@@ -11,7 +11,7 @@ df <- df %>%
     caseid24 = caseid,
     caseid22 = UARZ0003_caseid,
     age_tr = ifelse(trump_biden_age_order_treat == 1, 1, 0), # Biden first
-    age = 2024 - birthyr,
+    birthage = as.numeric(2024 - birthyr),
     vote_ = recode(as.numeric(vote), `1` = 4, `2` = 3, `3` = 2, `4` = 1),
     vote_trump_2020 = recode(as.numeric(voteChoice), `1` = 0, `2` = 1),
     vote_type = recodeAVP(voteType, labels4, reverse = FALSE)$data,
@@ -82,25 +82,28 @@ df <- df %>%
       as.numeric(MIP) == 15 ~ "foreignpolicy",
       as.numeric(MIP) == 16 ~ "other"
     ),
-    immigration_to_az = recodeAVP(Q49, labels5, reverse = TRUE)$data,
     biden_economy = ifelse(biden_economy == 1 | biden_economy == 2, 0, 1),
+    # Immigration
+    cali_migration = recodeAVP(Q49, labels5, reverse = TRUE)$data,
     immigration_rate = ifelse(immiga <= 2, 1, 0),
     separate_parents = recodeAVP(immig1, labels5, reverse = FALSE)$data,
     legal_status = recodeAVP(immig2, labels5, reverse = FALSE)$data,
     citizen = recodeAVP(immig3, labels5, reverse = FALSE)$data,
     smart_border = recodeAVP(immig4, labels5, reverse = FALSE)$data,
-    abortion_legal = recode(as.numeric(abortion2), `1` = "Any point", `2` = "1st Trimester", `3` = "1st or 2nd Trimester", `4` = "Never Legal"),
+    abortion_legal = recode(as.numeric(abortion2), `1` = 1, `2` = 2, `3` = 3, `4` = 4),
     abortion_jail = recodeAVP(as.numeric(abortion1), labels5, reverse = TRUE)$data,
-    abortion_rights = recodeAVP(abortion2b, labels5, reverse = FALSE)$data,
     border_wall = recodeAVP(wall, labels5, reverse = TRUE)$data,
-    transport_migrants = recodeAVP(Q162, labels5, reverse = FALSE)$data,
-    law_at_border = recodeAVP(law_at_border, labels5, reverse = TRUE)$data,
-    violence = recodeAVP(violence, labels4, reverse = TRUE)$data,
     auth_1 = recode(as.numeric(auth1), `1` = 0, `2` = 1),
     auth_2 = recode(as.numeric(auth2), `1` = 0, `2` = 1),
     auth_3 = recode(as.numeric(auth3), `1` = 1, `2` = 0),
     auth_4 = recode(as.numeric(auth4), `1` = 0, `2` = 1),
     authoritarianism = zero.one(rowMeans(cbind(auth_1, auth_2, auth_3, auth_4), na.rm = TRUE)),
+    abortion_rights = recodeAVP(abortion2b, labels5, reverse = FALSE)$data,
+    
+    
+    transport_migrants = recodeAVP(Q162, labels5, reverse = FALSE)$data,
+    law_at_border = recodeAVP(law_at_border, labels5, reverse = TRUE)$data,
+    violence = recodeAVP(violence, labels4, reverse = TRUE)$data,
     rwa1 = recodeAVP(Q207, labels5, reverse = TRUE)$data,
     rwa2 = recodeAVP(Q208, labels5, reverse = TRUE)$data,
     rwa3 = recodeAVP(Q209, labels5, reverse = TRUE)$data,
@@ -123,7 +126,7 @@ df <- df %>%
     ),
     black = ifelse(as.numeric(race) == 2, 1, 0),
     white = ifelse(as.numeric(race) == 1, 1, 0),
-    hispanic = ifelse(as.numeric(race) == 3, 1, 0),
+    latino = ifelse(as.numeric(race) == 3, 1, 0),
     asian = ifelse(as.numeric(race) == 4, 1, 0),
     american_indian = ifelse(as.numeric(race) == 5, 1, 0),
     two_or_more = ifelse(as.numeric(race) == 6, 1, 0),
@@ -133,12 +136,17 @@ df <- df %>%
     college = ifelse(as.numeric(educ) >= 5, 1, 0),
     faminc = ifelse(as.numeric(faminc_new) > 8, 1, 0),
     kids_in_home = ifelse(as.numeric(child18) == 1, 1, 0),
-    party3 = case_when(
+    female = case_when(
+      as.numeric(pid7) == 1 ~ 0,
+      as.numeric(pid7) == 2 ~ 1,
+      TRUE ~ NA_real_
+    ),
+    party_identification3 = case_when(
       as.numeric(pid7) == 1 ~ 1,
       as.numeric(pid7) == 2 ~ 1,
-      as.numeric(pid7) == 3 ~ 1,
+      as.numeric(pid7) == 3 ~ 2,
       as.numeric(pid7) == 4 ~ 2,
-      as.numeric(pid7) == 5 ~ 3,
+      as.numeric(pid7) == 5 ~ 2,
       as.numeric(pid7) == 6 ~ 3,
       as.numeric(pid7) == 7 ~ 3,
       TRUE ~ NA_real_
@@ -154,6 +162,14 @@ df <- df %>%
       as.numeric(ideo5) == 3 ~ 3,
       as.numeric(ideo5) == 4 ~ 4,
       as.numeric(ideo5) == 5 ~ 5,
+      TRUE ~ NA
+    ),
+    conservative3 = case_when(
+      as.numeric(ideo5) == 1 ~ 1,
+      as.numeric(ideo5) == 2 ~ 1,
+      as.numeric(ideo5) == 3 ~ 2,
+      as.numeric(ideo5) == 4 ~ 3,
+      as.numeric(ideo5) == 5 ~ 3,
       TRUE ~ NA
     ),
     voter_registration = case_when(
@@ -175,7 +191,7 @@ df <- df %>%
     CD = as.numeric(CD118),
     LD = as.numeric(LD_U),
     # Least Liked Group
-
+    
     least_liked_group = case_when(
       g1 == 1 ~ "Socialists",
       g1 == 2 ~ "Marxists",
@@ -252,28 +268,35 @@ new_columns <- setdiff(all_columns, original_columns)
 clean_df <- df %>% select(all_of(new_columns))
 
 # Save to dat
-write.csv(clean_df, file = "~/Dropbox/github_repos/avp-survey-data/public_opinion/dat/avp_wave_2_wide.csv", row.names = FALSE)
 
-clean_df %>%
-  mutate(rid = seq(1:nrow(clean_df))) %>%
-  mutate_if(is.numeric, as.character) %>%
-  pivot_longer(cols = -c(caseid24, caseid22, survey_weight, county_fips, CD, LD, party3)) %>%
-  mutate(county_name = recode(
-    county_fips,
-    `1` = "Apache",
-    `3` = "Cochise",
-    `5` = "Coconino",
-    `7` = "Gila",
-    `9` = "Graham",
-    `11` = "Greenlee",
-    `12` = "La Paz",
-    `13` = "Maricopa",
-    `15` = "Mohave",
-    `17` = "Navajo",
-    `19` = "Pima",
-    `21` = "Pinal",
-    `23` = "Santa Cruz",
-    `25` = "Yavapai",
-    `27` = "Yuma"
-  )) %>%
-  write.csv(file = "~/Dropbox/github_repos/avp-survey-data/public_opinion/dat/avp_wave_2_long.csv", row.names = FALSE)
+write.csv(clean_df, file = "~/Dropbox/github_repos/avp-survey-data/avpSurvey/avp_public_opinion/data/avp_wave_2_wide.csv", row.names = FALSE)
+
+
+
+# 
+# 
+# clean_df %>%
+#   mutate(rid = seq(1:nrow(clean_df))) %>%
+#   mutate_if(is.numeric, as.character) %>%
+#   pivot_longer(cols = -c(caseid24, caseid22, survey_weight, county_fips, CD, LD, party_identification3)) %>%
+#   mutate(county_name = recode(
+#     county_fips,
+#     `1` = "Apache",
+#     `3` = "Cochise",
+#     `5` = "Coconino",
+#     `7` = "Gila",
+#     `9` = "Graham",
+#     `11` = "Greenlee",
+#     `12` = "La Paz",
+#     `13` = "Maricopa",
+#     `15` = "Mohave",
+#     `17` = "Navajo",
+#     `19` = "Pima",
+#     `21` = "Pinal",
+#     `23` = "Santa Cruz",
+#     `25` = "Yavapai",
+#     `27` = "Yuma"
+#   )) %>%
+#   write.csv(file = "~/Dropbox/github_repos/avp-survey-data/avpSurvey/avp_public_opinion/data/avp_wave_2_long.csv", row.names = FALSE)
+# 
+# 

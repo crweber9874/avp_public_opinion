@@ -6,6 +6,7 @@ path <- file.path("/Users/Chris/Dropbox/masterData/AZ_Midterm/UARZ0003_OUTPUT.sa
 df <- read_sav(path)
 original_columns <- names(df)
 
+
 df <- df %>%
   mutate(
     caseid22 = caseid,
@@ -83,6 +84,7 @@ df <- df %>%
     # Policies
     cali_migration = recodeAVP(cali, labels5, reverse = FALSE)$data,
     immigration_rate = ifelse(immiga <= 2, 1, 0),
+    immigration_rate_long = recodeAVP(as.numeric(immiga), reverse = TRUE, labels5)$data,
     separate_parents = recodeAVP(immig1, labels5, reverse = FALSE)$data,
     legal_status = recodeAVP(immig2, labels4, reverse = FALSE)$data,
     citizen = recodeAVP(immig3, labels4, reverse = FALSE)$data,
@@ -117,7 +119,7 @@ df <- df %>%
     registry_guns = recode_policy_variables(gun2, reverse = TRUE),
     age_guns = recode_policy_variables(gun4, reverse = TRUE),
     assault_guns = ifelse(gun5 == 1 | gun5 == 2, 1, 0),
-    abortion_legal = recode(as.numeric(abortion1), `1` = "Any point", `2` = "1st Trimester", `3` = "1st or 2nd Trimester", `4` = "Never Legal"),
+    abortion_legal = recode(as.numeric(abortion1), `1` = 1, `2` = 2, `3` = 3, `4` = 4),
     abortion_jail = recode_policy_variables(abortion2, reverse = TRUE),
     violent_crime_importance = recode_policy_variables(crime2, reverse = TRUE),
     border_wall = recode_policy_variables(wall, reverse = TRUE),
@@ -163,7 +165,7 @@ df <- df %>%
     az_10years = ifelse(as.numeric(az_res) == 4, 1, 0),
     black = ifelse(as.numeric(race) == 2, 1, 0),
     white = ifelse(as.numeric(race) == 1, 1, 0),
-    hispanic = ifelse(as.numeric(race) == 3, 1, 0),
+    latino = ifelse(as.numeric(race) == 3, 1, 0),
     asian = ifelse(as.numeric(race) == 4, 1, 0),
     american_indian = ifelse(as.numeric(race) == 5, 1, 0),
     other = ifelse(as.numeric(race) == 6 | as.numeric(race) == 7, 1, 0),
@@ -173,12 +175,12 @@ df <- df %>%
     college = ifelse(as.numeric(educ) >= 5, 1, 0),
     faminc = ifelse(as.numeric(faminc_new) > 8, 1, 0),
     kids_in_home = ifelse(as.numeric(child18) == 1, 1, 0),
-    party3 = case_when(
+    party_identification3 = case_when(
       as.numeric(pid7) == 1 ~ 1,
       as.numeric(pid7) == 2 ~ 1,
-      as.numeric(pid7) == 3 ~ 1,
+      as.numeric(pid7) == 3 ~ 2,
       as.numeric(pid7) == 4 ~ 2,
-      as.numeric(pid7) == 5 ~ 3,
+      as.numeric(pid7) == 5 ~ 2,
       as.numeric(pid7) == 6 ~ 3,
       as.numeric(pid7) == 7 ~ 3,
       TRUE ~ NA_real_
@@ -204,6 +206,14 @@ df <- df %>%
       as.numeric(ideo5) == 5 ~ 5,
       TRUE ~ NA_real_
     ),
+    conservative3 = case_when(
+      as.numeric(ideo5) == 1 ~ 1,
+      as.numeric(ideo5) == 2 ~ 1,
+      as.numeric(ideo5) == 3 ~ 2,
+      as.numeric(ideo5) == 4 ~ 3,
+      as.numeric(ideo5) == 5 ~ 3,
+      TRUE ~ NA_real_
+    ),
     survey_weight = weight
   )
 
@@ -215,30 +225,7 @@ new_columns <- setdiff(all_columns, original_columns)
 clean_df <- df %>% select(all_of(new_columns))
 
 # Save to dat
-write.csv(clean_df, file = "~/Dropbox/github_repos/avp-survey-data/public_opinion/dat/avp_wave_1_wide.csv", row.names = FALSE)
-
-clean_df %>%
-  mutate_if(is.numeric, as.character) %>%
-  pivot_longer(cols = -c(caseid22, survey_weight, county_fips, CD, LD, party3)) %>%
-  mutate(county_name = recode(
-    county_fips,
-    `1` = "Apache",
-    `3` = "Cochise",
-    `5` = "Coconino",
-    `7` = "Gila",
-    `9` = "Graham",
-    `11` = "Greenlee",
-    `12` = "La Paz",
-    `13` = "Maricopa",
-    `15` = "Mohave",
-    `17` = "Navajo",
-    `19` = "Pima",
-    `21` = "Pinal",
-    `23` = "Santa Cruz",
-    `25` = "Yavapai",
-    `27` = "Yuma"
-  )) %>%
-  write.csv(file = "~/Dropbox/github_repos/avp-survey-data/public_opinion/dat/avp_wave_1_long.csv", row.names = FALSE)
+write.csv(clean_df, file = "~/Dropbox/github_repos/avp-survey-data/avpSurvey/avp_public_opinion/data/avp_wave_1_wide.csv", row.names = FALSE)
 
 
 # w1_long <- read.csv(file = "~/Dropbox/github_repos/avp-survey-data/public_opinion/dat/avp_wave_1_long.csv")

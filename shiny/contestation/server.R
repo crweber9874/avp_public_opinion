@@ -1,118 +1,6 @@
-
-library(shiny)
-library(tidyverse)
-library(dplyr)
-library(ggplot2)
-library(plotly)
-
-load("dat1.rda")
-load("dat2.rda")
-
-
-
-az_color <- function(color = c("azblue", "azred", "oasis", "grey", "warmgrey", "midnight", "azurite", "chili", "white")) {
-  if(color == "azblue") {return("#0C234B")}
-  if(color == "azred")  {return("#AB0520")}
-  if(color == "oasis")  {return("#378DBD")}
-  if(color == "azgrey")   {return("#E2E9EB")}
-  if(color == "warmgrey") {return("#F4EDE5")}
-  if(color == "midnight") {return("#001C48")}
-  if(color == "azurite") {return("#1E5288")}
-  if(color == "chili") {return("#8B0015")}
-  if(color == "azwhite") {return("#FFFFFF")}
-  
-}
-
-
-### Most items are support/oppose, so we will recode them as such
-build_data = function(prediction_data = dat, 
-                      ungrouped_data = full_dat,
-                      item = "burn_flag"){
-# Predictions
-model_df = prediction_data %>% 
-  filter(item == {{item}})  %>%
-  mutate(tooltip_text = paste0("Category: ", .category, "<br>",
-                               "Value: ", round(.value, 2), "<br>",
-                               "Lower: ", round(.lower, 2), "<br>"),
-         jittered_category = jitter(as.numeric(as.factor(.category)), amount = 0.5)) 
-### 
-data_df_weights<- ungrouped_data %>%
-  group_by(.category = !!sym(item)) %>%
-  summarise(.value = sum(survey_weight) / sum(full_dat %>% filter(survey == "AVP2") %>% pull(survey_weight))) 
-  data_df_weights = data_df_weights %>%
-    mutate(.category = recode(.category,
-                            `1` = "Strongly Oppose", 
-                            `2` = "Oppose", 
-                            `3` = "Neutral", 
-                            `4` = "Support", 
-                            `5` = "Strongly Support")) %>%
-  mutate(.category = factor(.category, 
-                            levels = c("Strongly Oppose", "Oppose", "Neutral",
-                                       "Support", "Strongly Support")))
-  data_df_noweights<- ungrouped_data %>%
-  # filter(survey == "AVP1") %>%
-  group_by(.category = !!sym(item)) %>%
-  summarise(.value = n() / nrow(full_dat )) %>%
-  mutate(.category = recode(.category,
-                            `1` = "Strongly Oppose", 
-                            `2` = "Oppose", 
-                            `3` = "Neutral", 
-                            `4` = "Support", 
-                            `5` = "Strongly Support")) %>%
-  mutate(.category = factor(.category, 
-                            levels = c("Strongly Oppose", "Oppose", "Neutral",
-                                       "Support", "Strongly Support")))
-
-
-return(list(model_df, data_df_noweights, data_df_weights))
-}
-
-
-
-
-### Most items are support/oppose, so we will recode them as such
-build_data_agree = function(prediction_data = dat, 
-                      ungrouped_data = full_dat,
-                      item = "stolen_2020"){
-  # Predictions
-  model_df = prediction_data %>% 
-    filter(item == {{item}})  %>%
-    mutate(tooltip_text = paste0("Category: ", .category, "<br>",
-                                 "Value: ", round(.value, 2), "<br>",
-                                 "Lower: ", round(.lower, 2), "<br>"),
-           jittered_category = jitter(as.numeric(as.factor(.category)), amount = 0.5)) 
-  ### 
-  data_df_weights<- ungrouped_data %>%
-    group_by(.category = !!sym(item)) %>%
-    summarise(.value = sum(survey_weight) / sum(full_dat %>% filter(survey == "AVP2") %>% pull(survey_weight))) 
-  data_df_weights = data_df_weights %>%
-    mutate(.category = recode(.category,
-                              `1` = "Strongly Disagree", 
-                              `2` = "Somewhat Disagree", 
-                              `3` = "Neutral", 
-                              `4` = "Somewhat Agree", 
-                              `5` = "Strongly Agree")) %>%
-    mutate(.category = factor(.category, 
-                              levels = c("Strongly Disagree", "Somewhat Disagree", "Neutral",
-                                         "Somewhat Agree", "Strongly Agree")))
-  data_df_noweights<- ungrouped_data %>%
-    # filter(survey == "AVP1") %>%
-    group_by(.category = !!sym(item)) %>%
-    summarise(.value = n() / nrow(full_dat )) %>%
-    mutate(.category = recode(.category,
-                              `1` = "Strongly Disagree", 
-                              `2` = "Somewhat Disagree", 
-                              `3` = "Neutral", 
-                              `4` = "Somewhat Agree", 
-                              `5` = "Strongly Agree")) %>%
-    mutate(.category = factor(.category, 
-                              levels = c("Strongly Disagree", "Somewhat Disagree", "Neutral",
-                                         "Somewhat Agree", "Strongly Agree")))
-  
-  
-  return(list(model_df, data_df_noweights, data_df_weights))
-}
-
+## Load globals and functions
+source("functions/functions.R")
+source("global.R")
 
 
 server <- function(input, output) {
@@ -4213,12 +4101,6 @@ output$hist_criticize <- renderPlotly({
                              font = list(color = 'black', size = 16))) # Black text color and larger font size
   
 })
-
-
-
-
-
-
 output$hist_certify <- renderPlotly({
   # create a histogram of the data
   # Create the base histogram
@@ -5242,7 +5124,6 @@ output$hist_certify <- renderPlotly({
                              font = list(color = 'black', size = 16))) # Black text color and larger font size
   
 })
-
 output$hist_newelection <- renderPlotly({
   # create a histogram of the data
   # Create the base histogram
@@ -6266,7 +6147,6 @@ output$hist_newelection <- renderPlotly({
                              font = list(color = 'black', size = 16))) # Black text color and larger font size
   
 })
-
 output$stolen_2020 <- renderPlotly({
   # create a histogram of the data
   # Create the base histogram

@@ -2,8 +2,17 @@ library(dplyr)
 library(tidyr)
 ## Arizona Voter Survey, Wave 1, 2022
 
+
 read.csv("~/Dropbox/github_repos/avp-survey-data/avpSurvey/avp_public_opinion/data/avp_wave_1_wide.csv") %>%
-  select(biden_ft, trump_ft, lake_ft,
+  # Create an age cohort variable based on the variable age ( in  years old in 2022)
+  mutate(age_cohort = case_when(
+    age < 30 ~ "18-29",
+    age >= 30 & age < 45 ~ "30-45",
+    age >= 45 & age < 65 ~ "45-65",
+    age >= 65 ~ "65+",
+  )) %>%
+  select(age_cohort,
+        biden_ft, trump_ft, lake_ft,
          kelly_ft,
          establishment_republican_feelings, 
          maga_republican_feelings, establishment_democrat_feelings, 
@@ -16,10 +25,13 @@ read.csv("~/Dropbox/github_repos/avp-survey-data/avpSurvey/avp_public_opinion/da
          assault_guns, abortion_legal, abortion_jail,
          border_wall, 
          attend_march, criticize_election,
+         burn_flag,
+         recount, court,
+         concede,
          auth_1, auth_2, auth_3,
          auth_4, authoritarianism, party_identification3,
          conservative3, black, white,
-         hispanic, asian, american_indian,
+         latino, asian, american_indian,
          other, zipcode, married,
          female, college, faminc,
          kids_in_home, survey_weight, county_fips,
@@ -54,7 +66,13 @@ avp_w1_wide %>%
 
 clean_df = read.csv( "~/Dropbox/github_repos/avp-survey-data/avpSurvey/avp_public_opinion/data/avp_wave_2_wide.csv")
 clean_df %>%
-  select(conservative3, party_identification3, burn_flag,
+  mutate(age_cohort = case_when(
+    birthage < 30 ~ "18-29",
+    birthage >= 30 & birthage < 45 ~ "30-45",
+    birthage >= 45 & birthage < 65 ~ "45-65",
+    birthage >= 65 ~ "65+"
+  )) %>%
+  dplyr::select(age_cohort, conservative3, party_identification3, burn_flag,
          recount, court, certify,
          concede, state_certify, attend_march,
          criticize_election, biden_ft, trump_ft,
@@ -115,7 +133,13 @@ avp_w1w2 <- right_join(df1, df2, by = "caseid22")
 ## Western States Survey, 2020
 
 read.csv("~/Dropbox/github_repos/avp-survey-data/avpSurvey/avp_public_opinion/data/datWestern2020_wide.csv") %>%
-  select( id, conservative3, party_identification3,
+  mutate(age_cohort = case_when(
+    age < 30 ~ "18-29",
+    age >= 30 & age < 45 ~ "30-45",
+    age >= 45 & age < 65 ~ "45-65",
+    age >= 65 ~ "65+"
+  )) %>%
+  select( age_cohort, id, conservative3, party_identification3,
           attend_march, burn_flag, court,
           recount, criticize_election,
           water_dams, water_conservation,
@@ -124,7 +148,7 @@ read.csv("~/Dropbox/github_repos/avp-survey-data/avpSurvey/avp_public_opinion/da
           immResources, conceal_guns, background_guns,
           registry_guns,
           female, white, latino,
-          hispanic, asian, american_indian,
+          asian, american_indian,
           two_or_more, other, vote2016,
           college, income, married,
           survey_weight)  %>% 
@@ -136,6 +160,8 @@ western_wide %>%
 
 
 ## Combine the data
+avp_w1_wide %>%
+  write.csv(file = "~/Dropbox/github_repos/avp-survey-data/avpSurvey/avp_public_opinion/data/w1_wide.csv", row.names = FALSE)
 
 list(western_long, avp_w1_long, avp_w2_long) %>%
   bind_rows() %>%
