@@ -39,7 +39,7 @@ Each of these files exports a cleaned data set to the $\texttt{data/}$ folder.
 
 ### $\texttt{shiny/}$
 
-[$\texttt{shiny/contestation}$](https://viz.datascience.arizona.edu/avp_democracy/). Shiny app visualizing electoral contestion with the Wave I AVP data.
+[shiny/contestation](https://viz.datascience.arizona.edu/avp_democracy/). Shiny app visualizing electoral contestion with the Wave I AVP data.
 
 ## Data Information
 
