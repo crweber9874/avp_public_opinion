@@ -14,11 +14,11 @@ These data are used in the visualizations
 
 ### $\texttt{clean/}$
 
-* $\texttt{buildDataAVP22.R}$: Cleans the Western Data 
-* $\texttt{buildDataAVP22.R}$: Cleans the AVP Wave 1 Panel. 
-* $\texttt{buildDataAVP24.R}$: Cleans the AVP Wave 2 Panel. 
+* buildDataAVP22.R: Cleans the Western Data 
+* buildDataAVP22.R: Cleans the AVP Wave 1 Panel. 
+* buildDataAVP24.R: Cleans the AVP Wave 2 Panel. 
 Each of these files exports a cleaned data set to the $\texttt{data/}$ folder.
-* $\texttt{combineDat.R}$: Combines the three datasets in a variety of ways. Each file is represented as a long and wide form. I created a single file, with common questions across datasets. I also created a panel dataset, by joining respondents from wave 1 to wave 2.
+* combineDat.R}$: Combines the three datasets in a variety of ways. Each file is represented as a long and wide form. I created a single file, with common questions across datasets. I also created a panel dataset, by joining respondents from wave 1 to wave 2.
 
 ### $\texttt{data/}$
 
