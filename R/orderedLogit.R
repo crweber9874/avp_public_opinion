@@ -1,7 +1,6 @@
 df = read.csv("~/Dropbox/github_repos/avp-survey-data/avpSurvey/avp_public_opinion/data/avpWide.csv")
+
 library(brms)
-
-
 ordered_model <- function(dependent_variable = "attend_march", 
                           independent_variable = "party_identification3",
                           data = df, 
@@ -30,7 +29,7 @@ ordered_model <- function(dependent_variable = "attend_march",
   )
   
   dat = expand_grid( 
-    !!sym(independent_variable) := unique(data[[independent_variable]]),
+    !!sym(independent_variable) := unique(na.omit(data[[independent_variable]])),
     survey = unique(model$data$survey)) %>% as.data.frame() %>%
     tidybayes::add_epred_draws(model) %>%
     group_by(!!sym(independent_variable), survey, .category) %>%
