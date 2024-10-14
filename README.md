@@ -22,16 +22,16 @@ Each of these files exports a cleaned data set to the $\texttt{data/}$ folder.
 
 ### $\texttt{data/}$
 
-* $\texttt{avp_w1_wide.csv}$. Wave 1 of the AVP survey in *wide* form, conducted by YouGov.
-* $\texttt{avp_w1_long.csv}$. Wave 1 of the AVP survey in *long* form, conducted by YouGov.
-* $\texttt{avp_w2_wide.csv}$. Wave 2 of the AVP survey in *wide* form, conducted by YouGov.
-* $\texttt{avp_w2_long.csv}$. Wave 2 of the AVP survey in *long* form, conducted by YouGov.
-* $\texttt{datWestern2020_long.csv}$. The Western Data in *long* form.
-* $\texttt{datWestern2020_wide.csv}$. The Western Data in *wide* form, conducted by YouGov.
-* $\texttt{avpLong.csv}$. Truncated three files in *long* form.
-* $\texttt{avpWide.csv}$. Truncated three files in *long* form.
-* $\texttt{avp_panel.csv}$. The two wave panel data from Arizona in *wide* form, conducted by YouGov.
-* $\texttt{avp_w1w2_long.csv}$. The two wave panel data from Arizona in *long* form, conducted by YouGov.
+* avp_w1_wide.csv. Wave 1 of the AVP survey in *wide* form, conducted by YouGov.
+* avp_w1_long.csv. Wave 1 of the AVP survey in *long* form, conducted by YouGov.
+* avp_w2_wide.csv. Wave 2 of the AVP survey in *wide* form, conducted by YouGov.
+* avp_w2_long.csv. Wave 2 of the AVP survey in *long* form, conducted by YouGov.
+* datWestern2020_long.csv. The Western Data in *long* form.
+* datWestern2020_wide.csv. The Western Data in *wide* form, conducted by YouGov.
+* avpLong.csv. Truncated three files in *long* form.
+* avpWide.csv. Truncated three files in *long* form.
+* avp_panel.csv. The two wave panel data from Arizona in *wide* form, conducted by YouGov.
+* avp_w1w2_long.csv. The two wave panel data from Arizona in *long* form, conducted by YouGov.
 
 
 
