@@ -4,7 +4,6 @@ library(tidyr)
 
 
 read.csv("~/Dropbox/github_repos/avp-survey-data/avpSurvey/avp_public_opinion/data/avp_wave_1_wide.csv") %>%
-  # Create an age cohort variable based on the variable age ( in  years old in 2022)
   mutate(age_cohort = case_when(
     age < 30 ~ "18-29",
     age >= 30 & age < 45 ~ "30-45",
@@ -119,15 +118,12 @@ avp_w2_wide%>%
 
 ## Construct the W1 and W2
 
-# Rename columns in avp_w1_wide to end with _w1
 df1 <- avp_w1_wide %>%
   rename_with(~ paste0(., "_w1"), -caseid22)
 
-# Rename columns in avp_w2_wide to end with _w2
 df2 <- avp_w2_wide %>%
   rename_with(~ paste0(., "_w2"), -caseid22)
 
-# Perform the right join
 avp_w1w2 <- right_join(df1, df2, by = "caseid22")
 
 ## Western States Survey, 2020

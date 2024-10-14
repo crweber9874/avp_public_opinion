@@ -10,8 +10,7 @@ server <- function(input, output) {
   
 
 output$hist_burn <- renderPlotly({
-    # create a histogram of the data
-    # Create the base histogram
+
     if(input$surveyweight == "No Survey Weights"){
       df  =  build_data(item = "burn_flag")[[2]]
           }
@@ -35,22 +34,21 @@ output$hist_burn <- renderPlotly({
             y = ~.value, type = 'bar', 
             name = "All Participants",
             text = ~paste0("<b>", "Category: ", "</b>", .category, "<br>", 
-                           "<b>","Probability: ","</b>", round(.value, 2)), # Tooltip text
+                           "<b>","Probability: ","</b>", round(.value, 2)), # 
             marker = list(color = 'rgba(128, 128, 128, 0.9)'),
             textposition = "none",
             hoverinfo =  "text",
             opacity = 0.3) %>% 
       layout(title = "'Burn the American Flag'",
              showlegend = TRUE,
-             xaxis = list(title = "Category ", tickangle = -45), # Rotate x-axis labels by 45 degrees
+             xaxis = list(title = "Category ", tickangle = -45), #
              yaxis = list(title = "Probability ", range = c(0, 1)),
-             hoverlabel = list(bgcolor = 'rgba(255, 255, 255, 0.4)', # White and semi-transparent
+             hoverlabel = list(bgcolor = 'rgba(255, 255, 255, 0.4)', 
                                font = list(color = 'darkgrey')), 
              hovermode = 'closest',
              autosize = TRUE)
     
     if("Democrat" %in% input$multi) {
-      #Filter cases
       dat_democrat = dat %>% 
         filter(party_identification3 == 1)
       
@@ -72,13 +70,12 @@ output$hist_burn <- renderPlotly({
                                "<b>",  "Margin of Error: ", "</b>", "[", round(.lower, 2), ",", 
                                round(.upper, 2),  "]<br>"),
                 hoverinfo = 'text') %>%
-      layout(hoverlabel = list(bgcolor = 'rgba(255, 255, 255, 0.4)', # White and semi-transparent
+      layout(hoverlabel = list(bgcolor = 'rgba(255, 255, 255, 0.4)', 
                                font = list(color = 'lightgrey', 
                                            size = 16))) 
     }
 
     if("Republican" %in% input$multi) {
-     #Filter cases
      dat_republican = dat %>% 
        filter(party_identification3 == 3)
      
@@ -100,14 +97,13 @@ output$hist_burn <- renderPlotly({
                                 "<b>",  "Margin of Error: ", "</b>", "[", round(.lower, 2), ",", 
                                 round(.upper, 2),  "]<br>"),
                  hoverinfo = 'text') %>%
-       layout(hoverlabel = list(bgcolor = 'rgba(255, 255, 255, 0.4)', # White and semi-transparent
+       layout(hoverlabel = list(bgcolor = 'rgba(255, 255, 255, 0.4)', 
                                 font = list(color = 'lightgrey', 
                                             size = 16
                                             ))) 
    }
    
     if("Independent" %in% input$multi) {
-     #Filter cases
      dat_independent = dat %>% 
        filter(party_identification3 == 2)
      
@@ -156,13 +152,12 @@ output$hist_burn <- renderPlotly({
                                 "<b>",  "Margin of Error: ", "</b>", "[", round(.lower, 2), ",", 
                                 round(.upper, 2),  "]<br>"),
                  hoverinfo = 'text') %>%
-       layout(hoverlabel = list(bgcolor = 'rgba(255, 255, 255, 0.4)', # White and semi-transparent
+       layout(hoverlabel = list(bgcolor = 'rgba(255, 255, 255, 0.4)', 
                                 font = list(color = 'lightgrey', 
                                             size = 16))) 
    }
    
     if("Latino" %in% input$multi) {
-     #Filter cases
      dat_latino= dat %>% 
        filter(latino == 1)
      
@@ -183,13 +178,12 @@ output$hist_burn <- renderPlotly({
                                 "<b>",  "Margin of Error: ", "</b>", "[", round(.lower, 2), ",", 
                                 round(.upper, 2),  "]<br>"),
                  hoverinfo = 'text') %>%
-       layout(hoverlabel = list(bgcolor = 'rgba(255, 255, 255, 0.4)', # White and semi-transparent
+       layout(hoverlabel = list(bgcolor = 'rgba(255, 255, 255, 0.4)', 
                                 font = list(color = 'lightgrey', 
                                             size = 16))) 
    }
  
     if("Conservative" %in% input$multi) {
-     #Filter cases
      dat_conservative= dat %>% 
        filter(conservative3 == 3)
      
@@ -216,7 +210,6 @@ output$hist_burn <- renderPlotly({
    }
    
     if("Liberal" %in% input$multi) {
-     #Filter cases
      dat_lib= dat %>% 
        filter(conservative3 == 1)
      
@@ -237,13 +230,12 @@ output$hist_burn <- renderPlotly({
                                 "<b>",  "Margin of Error: ", "</b>", "[", round(.lower, 2), ",", 
                                 round(.upper, 2),  "]<br>"),
                  hoverinfo = 'text') %>%
-       layout(hoverlabel = list(bgcolor = 'rgba(255, 255, 255, 0.4)', # White and semi-transparent
+       layout(hoverlabel = list(bgcolor = 'rgba(255, 255, 255, 0.4)', 
                                 font = list(color = 'lightgrey', 
                                             size = 16))) 
    }
    
     if("Moderate" %in% input$multi) {
-     #Filter cases
      dat_mod= dat %>% 
        filter(conservative3 == 2)
      
@@ -264,13 +256,12 @@ output$hist_burn <- renderPlotly({
                                 "<b>",  "Margin of Error: ", "</b>", "[", round(.lower, 2), ",", 
                                 round(.upper, 2),  "]<br>"),
                  hoverinfo = 'text') %>%
-       layout(hoverlabel = list(bgcolor = 'rgba(255, 255, 255, 0.4)', # White and semi-transparent
+       layout(hoverlabel = list(bgcolor = 'rgba(255, 255, 255, 0.4)', 
                                 font = list(color = 'lightgrey', 
                                             size = 16))) 
    }
    
     if("18-29 years" %in% input$multi) {
-     #Filter cases
      dat1= dat %>% 
        filter(age_cohort == "18-29")
      
@@ -291,13 +282,12 @@ output$hist_burn <- renderPlotly({
                                 "<b>",  "Margin of Error: ", "</b>", "[", round(.lower, 2), ",", 
                                 round(.upper, 2),  "]<br>"),
                  hoverinfo = 'text') %>%
-       layout(hoverlabel = list(bgcolor = 'rgba(255, 255, 255, 0.4)', # White and semi-transparent
+       layout(hoverlabel = list(bgcolor = 'rgba(255, 255, 255, 0.4)', 
                                 font = list(color = 'lightgrey', 
                                             size = 16))) 
    }
    
    if("30-45 years" %in% input$multi) {
-     #Filter cases
      dat2= dat %>% 
        filter(age_cohort == "30-45")
      
@@ -318,14 +308,13 @@ output$hist_burn <- renderPlotly({
                                 "<b>",  "Margin of Error: ", "</b>", "[", round(.lower, 2), ",", 
                                 round(.upper, 2),  "]<br>"),
                  hoverinfo = 'text') %>%
-       layout(hoverlabel = list(bgcolor = 'rgba(255, 255, 255, 0.4)', # White and semi-transparent
+       layout(hoverlabel = list(bgcolor = 'rgba(255, 255, 255, 0.4)', 
                                 font = list(color = 'lightgrey', 
                                             size = 16))) 
    }
    
    
    if("45-65 years" %in% input$multi) {
-     #Filter cases
      dat3= dat %>% 
        filter(age_cohort == "45-65")
      
@@ -346,13 +335,12 @@ output$hist_burn <- renderPlotly({
                                 "<b>",  "Margin of Error: ", "</b>", "[", round(.lower, 2), ",", 
                                 round(.upper, 2),  "]<br>"),
                  hoverinfo = 'text') %>%
-       layout(hoverlabel = list(bgcolor = 'rgba(255, 255, 255, 0.4)', # White and semi-transparent
+       layout(hoverlabel = list(bgcolor = 'rgba(255, 255, 255, 0.4)', 
                                 font = list(color = 'lightgrey', 
                                             size = 16))) 
    }
    
    if("65+ years" %in% input$multi) {
-     #Filter cases
      dat4= dat %>% 
        filter(age_cohort == "65+")
      
@@ -373,7 +361,7 @@ output$hist_burn <- renderPlotly({
                                 "<b>",  "Margin of Error: ", "</b>", "[", round(.lower, 2), ",", 
                                 round(.upper, 2),  "]<br>"),
                  hoverinfo = 'text') %>%
-       layout(hoverlabel = list(bgcolor = 'rgba(255, 255, 255, 0.4)', # White and semi-transparent
+       layout(hoverlabel = list(bgcolor = 'rgba(255, 255, 255, 0.4)', 
                                 font = list(color = 'lightgrey', 
                                             size = 16))) 
    }
@@ -401,13 +389,12 @@ output$hist_burn <- renderPlotly({
                                 "<b>",  "Margin of Error: ", "</b>", "[", round(.lower, 2), ",", 
                                 round(.upper, 2),  "]<br>"),
                  hoverinfo = 'text') %>%
-       layout(hoverlabel = list(bgcolor = 'rgba(255, 255, 255, 0.4)', # White and semi-transparent
+       layout(hoverlabel = list(bgcolor = 'rgba(255, 255, 255, 0.4)', 
                                 font = list(color = 'lightgrey', 
                                             size = 16))) 
    }
    
    if("Female" %in% input$multi) {
-     #Filter cases
      dat6= dat %>% 
        filter(female == "1")
      
@@ -428,13 +415,12 @@ output$hist_burn <- renderPlotly({
                                 "<b>",  "Margin of Error: ", "</b>", "[", round(.lower, 2), ",", 
                                 round(.upper, 2),  "]<br>"),
                  hoverinfo = 'text') %>%
-       layout(hoverlabel = list(bgcolor = 'rgba(255, 255, 255, 0.4)', # White and semi-transparent
+       layout(hoverlabel = list(bgcolor = 'rgba(255, 255, 255, 0.4)', 
                                 font = list(color = 'lightgrey', 
                                             size = 16))) 
    }
    
    if("Other Race" %in% input$multi) {
-     #Filter cases
      dat7= dat %>% 
        filter(white == "0")
      
@@ -455,7 +441,7 @@ output$hist_burn <- renderPlotly({
                                 "<b>",  "Margin of Error: ", "</b>", "[", round(.lower, 2), ",", 
                                 round(.upper, 2),  "]<br>"),
                  hoverinfo = 'text') %>%
-       layout(hoverlabel = list(bgcolor = 'rgba(255, 255, 255, 0.4)', # White and semi-transparent
+       layout(hoverlabel = list(bgcolor = 'rgba(255, 255, 255, 0.4)', 
                                 font = list(color = 'lightgrey', 
                                             size = 16))) 
    }
@@ -482,13 +468,12 @@ output$hist_burn <- renderPlotly({
                                 "<b>",  "Margin of Error: ", "</b>", "[", round(.lower, 2), ",", 
                                 round(.upper, 2),  "]<br>"),
                  hoverinfo = 'text') %>%
-       layout(hoverlabel = list(bgcolor = 'rgba(255, 255, 255, 0.4)', # White and semi-transparent
+       layout(hoverlabel = list(bgcolor = 'rgba(255, 255, 255, 0.4)', #
                                 font = list(color = 'lightgrey', 
                                             size = 16))) 
    }
    
    if("Non-Authoritarian" %in% input$multi) {
-     #Filter cases
      dat_lauth= dat %>% 
        filter(authoritarianism == "0")
      
@@ -509,13 +494,12 @@ output$hist_burn <- renderPlotly({
                                 "<b>",  "Margin of Error: ", "</b>", "[", round(.lower, 2), ",", 
                                 round(.upper, 2),  "]<br>"),
                  hoverinfo = 'text') %>%
-       layout(hoverlabel = list(bgcolor = 'rgba(255, 255, 255, 0.4)', # White and semi-transparent
+       layout(hoverlabel = list(bgcolor = 'rgba(255, 255, 255, 0.4)', 
                                 font = list(color = 'lightgrey', 
                                             size = 16))) 
    }
    
    if("Christian" %in% input$multi) {
-     #Filter cases
      dat_christian= dat %>% 
        filter(christian == 1)
      
@@ -536,13 +520,12 @@ output$hist_burn <- renderPlotly({
                                 "<b>",  "Margin of Error: ", "</b>", "[", round(.lower, 2), ",", 
                                 round(.upper, 2),  "]<br>"),
                  hoverinfo = 'text') %>%
-       layout(hoverlabel = list(bgcolor = 'rgba(255, 255, 255, 0.4)', # White and semi-transparent
+       layout(hoverlabel = list(bgcolor = 'rgba(255, 255, 255, 0.4)',
                                 font = list(color = 'lightgrey', 
                                             size = 16))) 
    }
    
    if("Non Christian" %in% input$multi) {
-     #Filter cases
      dat_nchristian= dat %>% 
        filter(christian == 0)
      
@@ -590,13 +573,12 @@ output$hist_burn <- renderPlotly({
                                 "<b>",  "Margin of Error: ", "</b>", "[", round(.lower, 2), ",", 
                                 round(.upper, 2),  "]<br>"),
                  hoverinfo = 'text') %>%
-       layout(hoverlabel = list(bgcolor = 'rgba(255, 255, 255, 0.4)', # White and semi-transparent
+       layout(hoverlabel = list(bgcolor = 'rgba(255, 255, 255, 0.4)', 
                                 font = list(color = 'lightgrey', 
                                             size = 16))) 
    }
    
    if("Low Racial Resentment" %in% input$multi) {
-     #Filter cases
      dat_lrr= dat %>% 
        filter(rr == 0)
      

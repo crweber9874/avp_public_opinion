@@ -4,10 +4,9 @@ library(plotly)
 library(shiny)
 
 ui <- fluidPage(
-  theme = shinytheme("cosmo"),  # Choose a theme (optional)
+  theme = shinytheme("cosmo"),  
   
   
-  # Custom CSS for navbar
   tags$head(
     tags$style(HTML("
       .navbar-default {
@@ -24,19 +23,15 @@ ui <- fluidPage(
   ),
   
   
-  # Navbar
   navbarPage(
     title = "Democracy",
-    # Main tab
     tabPanel(
       "Electoral Contestation",
-      # Add title and subtitle with specified colors
       tags$div(
         tags$h1("Beliefs about Elections and Democracy", style = "color: black;"),
         tags$h2("How much do you support or oppose each of the following behaviors when people are unhappy with the outcome of an election?", style = "color: black;")
       ),
       
-      # Add horizontal line
       tags$hr(),
       
       br(),
@@ -120,8 +115,7 @@ ui <- fluidPage(
             )
           ))),
       
-      # Add a colum of instruction
-      
+
       br(),
       
       fluidRow(
@@ -137,7 +131,6 @@ ui <- fluidPage(
       
       br(),
       
-      # Place for notes
       tags$div(
         tags$h3("Notes:"),
         tags$b("This application allows you to visualize similarities and differences between groups in the 
@@ -153,13 +146,11 @@ ui <- fluidPage(
     tabPanel(
       "Electoral Contestation, Continued",
       
-      # Add title and subtitle with specified colors
       tags$div(
         tags$h1("Beliefs about Elections and Democracy", style = "color: black;"),
         tags$h2("How much do you support or oppose each of the following behaviors when people are unhappy with the outcome of an election?", style = "color: black;")
       ),
       
-      # Add horizontal line
       tags$hr(),
       
       br(),
@@ -243,7 +234,6 @@ ui <- fluidPage(
             )
           ))),
         
-      # Add a colum of instruction
 
       br(),
       
@@ -271,7 +261,6 @@ ui <- fluidPage(
       
       br(),
       
-      # Place for notes
       tags$div(
         tags$h3("Notes:"),
         tags$b("This application allows you to visualize similarities and differences between groups in the 
@@ -290,13 +279,11 @@ ui <- fluidPage(
       
       tabPanel(
         "The 2020 Election",
-        # Add title and subtitle with specified colors
         tags$div(
           tags$h1("Beliefs about Elections and Democracy", style = "color: black;"),
           tags$h2("The 2020 Election", style = "color: black;")
         ),
         
-        # Add horizontal line
         tags$hr(),
         
         br(),
@@ -394,7 +381,6 @@ ui <- fluidPage(
         
         br(),
         
-        # Place for notes
         tags$div(
           tags$h3("Notes:"),
           tags$b("This application allows you to visualize similarities and differences between groups in the 
