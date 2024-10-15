@@ -1,4 +1,4 @@
-# Public Opinion in Arizona
+# Public Opinion in Arizona (October 15, 2024)
 
 This repo includes code to clean, merge, analyze, recode, and visualize  public opinion data for the Arizona Voter Project.
 
