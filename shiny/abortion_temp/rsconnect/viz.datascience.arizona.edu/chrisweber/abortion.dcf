@@ -1,0 +1,12 @@
+name: abortion
+title: abortion
+username: chrisweber
+account: chrisweber
+server: viz.datascience.arizona.edu
+hostUrl: https://viz.datascience.arizona.edu/__api__
+appId: 1137
+bundleId: 5859
+url: https://viz.datascience.arizona.edu:443/content/b3e849db-10ba-41d6-b1ba-84c3b2937147/
+version: 1
+asMultiple: FALSE
+asStatic: FALSE
