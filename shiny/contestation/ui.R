@@ -6,30 +6,30 @@ library(shiny)
 
 ui <- fluidPage(
   theme = shinytheme("cosmo"),  
+  # 
+  # tags$head(
+  #   tags$style(HTML("
+  #     .vertical-line {
+  #       border-left: 2px solid #000;
+  #       height: 100%;
+  #     }
+  #   "))
+  # ),
+  # 
+  # tags$div(
+  #   tags$h2("Electoral Contestation", style = "color: black; font-weight: bold;"),
+  #   tags$h3("'How much do you support or oppose each of the following behaviors when people are unhappy with the outcome of an election?'", style = "color: black; font-weight: normal;")
+  # ),
   
-  tags$head(
-    tags$style(HTML("
-      .vertical-line {
-        border-left: 2px solid #000;
-        height: 100%;
-      }
-    "))
-  ),
-  
-  tags$div(
-    tags$h2("Electoral Contestation", style = "color: black; font-weight: bold;"),
-    tags$h3("'How much do you support or oppose each of the following behaviors when people are unhappy with the outcome of an election?'", style = "color: black; font-weight: normal;")
-  ),
-  
-  tags$hr(),
+  # tags$hr(),
   
   br(),
   
   fluidRow(
-    column(
-      width = 12,
-      class = "vertical-line"
-    ),
+    # column(
+    #   width = 12,
+    #   class = "vertical-line"
+    # ),
     column(
       width = 4,
       height = 4,
@@ -69,15 +69,15 @@ ui <- fluidPage(
         ), 
         multiple = TRUE
       )
-    ),
-    column(
-      width = 8,
-      tags$div(
-        tags$b("Explore characteristics of the Arizona Voter Survey, a representative sample of Arizona voters. 
-                Each graph includes interactive features. You may zoom in and out, rescale axes, and hover over data points to show their values.", 
-               style = "font-size: 2rem; font-weight: normal;")
-      )
     )
+    # ,column(
+    #   width = 8,
+    #   tags$div(
+    #     tags$b("Explore characteristics of the Arizona Voter Survey, a representative sample of Arizona voters. 
+    #             Each graph includes interactive features. You may zoom in and out, rescale axes, and hover over data points to show their values.", 
+    #            style = "font-size: 2rem; font-weight: normal;")
+    #   )
+    # )
   ),
   
   fluidRow(  
@@ -99,10 +99,12 @@ ui <- fluidPage(
   fluidRow(
     column(
       width = 6,
+      tags$h3("Support ballot recounts", style = "width: 100%; text-align: center; padding: 0px 75px 0px 75px;"),
       plotlyOutput(outputId = "hist_recount")
     ),
     column(
       width = 6,
+      tags$h3("Contest the outcome in the courts ", style = "width: 100%; text-align: center; padding: 0px 75px 0px 75px;"),
       plotlyOutput(outputId = "hist_court")
     )
   ),
@@ -112,35 +114,41 @@ ui <- fluidPage(
   fluidRow(
     column(
       width = 6,
+      tags$h3("Publicly criticize the integrity or fairness of the election", style = "width: 100%; text-align: center; padding: 0px 75px 0px 75px;"),
       plotlyOutput(outputId = "hist_criticize")
     ),
     column(
       width = 6,
+      tags$h3("Attend a March or Demonstration", style = "width: 100%; text-align: center; padding: 0px 75px 0px 75px;"),
       plotlyOutput(outputId = "hist_march")
     )
   ),
   
   fluidRow(
     column(
+      tags$h3("State legislators refusing to certify the election results", style = "width: 100%; text-align: center; padding: 0px 75px 0px 75px;"),
       width = 6,
       plotlyOutput(outputId = "hist_cert")
     ),
     column(
       width = 6,
+      tags$h3("Burn the American Flag", style = "width: 100%; text-align: center; padding: 0px 75px 0px 75px;"),
       plotlyOutput(outputId = "hist_burn")
     )
   ),
   
-  tags$div(
-    tags$h3("Notes:"),
-    tags$b("Visualize similarities and differences between groups in the 
-            Arizona Voter Survey."),
-    tags$b("Use the dropdown menus to visualize different groups and choose to apply survey weights. Each graph has interactive features, 
-            where axes can be rescaled, the user can zoom in and out, and hover over data points to see the exact values. The predictions 
-            for each group were generated from a statistical model, the ordered logistic regression model. 
-            The models were estimated in the R language using the the brms package. The predictions are the predicted probability of 
-            each group, with a margin of error. More precisely, they represent the mean of the posterior prediction, alongside 
-            the 95% credible interval.")
-    
-  )
+  
+
+  # tags$div(
+  #   tags$h3("Notes:"),
+  #   tags$b("Visualize similarities and differences between groups in the 
+  #           Arizona Voter Survey."),
+  #   tags$b("Use the dropdown menus to visualize different groups and choose to apply survey weights. Each graph has interactive features, 
+  #           where axes can be rescaled, the user can zoom in and out, and hover over data points to see the exact values. The predictions 
+  #           for each group were generated from a statistical model, the ordered logistic regression model. 
+  #           The models were estimated in the R language using the the brms package. The predictions are the predicted probability of 
+  #           each group, with a margin of error. More precisely, they represent the mean of the posterior prediction, alongside 
+  #           the 95% credible interval.")
+  #   
+  # )
 )

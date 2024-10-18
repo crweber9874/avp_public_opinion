@@ -7,22 +7,22 @@ library(shiny)
 ui <- fluidPage(
   theme = shinytheme("cosmo"),  
   
-  tags$head(
-    tags$style(HTML("
-      .vertical-line {
-        border-left: 2px solid #000;
-        height: 100%;
-      }
-    "))
-  ),
+  # tags$head(
+  #   tags$style(HTML("
+  #     .vertical-line {
+  #       border-left: 2px solid #000;
+  #       height: 100%;
+  #     }
+  #   "))
+  # ),
+  # 
+  # tags$div(
+  #   tags$h2("Guns", style = "color: black; font-weight: bold;")
+  # ),
+  # 
+  # tags$hr(),
   
-  tags$div(
-    tags$h2("Guns", style = "color: black; font-weight: bold;")
-  ),
-  
-  tags$hr(),
-  
-  br(),
+  # br(),
   
   fluidRow(
     column(
@@ -69,14 +69,14 @@ ui <- fluidPage(
         multiple = TRUE
       )
     ),
-    column(
-      width = 8,
-      tags$div(
-        tags$b("Explore characteristics of the Arizona Voter Survey, a representative sample of Arizona voters. 
-                Each graph includes interactive features. You may zoom in and out, rescale axes, and hover over data points to show their values.", 
-               style = "font-size: 2rem; font-weight: normal;")
-      )
-    )
+    # column(
+    #   width = 8,
+    #   tags$div(
+    #     tags$b("Explore characteristics of the Arizona Voter Survey, a representative sample of Arizona voters. 
+    #             Each graph includes interactive features. You may zoom in and out, rescale axes, and hover over data points to show their values.", 
+    #            style = "font-size: 2rem; font-weight: normal;")
+    #   )
+    # )
   ),
   
   fluidRow(  
@@ -98,10 +98,13 @@ ui <- fluidPage(
   fluidRow(
     column(
       width = 6,
+      tags$h3("Do you support or oppose mandatory background checks for all sales of firearms?", style = "width: 100%; text-align: center; padding: 0px 75px 0px 75px;"),
       plotlyOutput(outputId = "hist_background")
     ),
     column(
       width = 6,
+      tags$h3("Do you support or oppose establishing a national gun registry?", style = "width: 100%; text-align: center; padding: 0px 75px 0px 75px;"),
+      
       plotlyOutput(outputId = "hist_registry")
     )
   ),
@@ -112,19 +115,20 @@ ui <- fluidPage(
     column(
       width = 6,
       offset = 3,
+      tags$h3("Do you support or oppose raising the age to own a firearm from 18 to 21?", style = "width: 100%; text-align: center; padding: 0px 75px 0px 75px;"),
       plotlyOutput(outputId = "hist_age")
     )
   ),
-  tags$div(
-    tags$h3("Notes:"),
-    tags$b("Visualize similarities and differences between groups in the 
-            Arizona Voter Survey."),
-    tags$b("Use the dropdown menus to visualize different groups and choose to apply survey weights. Each graph has interactive features, 
-            where axes can be rescaled, the user can zoom in and out, and hover over data points to see the exact values. The predictions 
-            for each group were generated from a statistical model, the ordered logistic regression model. 
-            The models were estimated in the R language using the the brms package. The predictions are the predicted probability of 
-            each group, with a margin of error. More precisely, they represent the mean of the posterior prediction, alongside 
-            the 95% credible interval.")
-    
-  )
+  # tags$div(
+  #   tags$h3("Notes:"),
+  #   tags$b("Visualize similarities and differences between groups in the 
+  #           Arizona Voter Survey."),
+  #   tags$b("Use the dropdown menus to visualize different groups and choose to apply survey weights. Each graph has interactive features, 
+  #           where axes can be rescaled, the user can zoom in and out, and hover over data points to see the exact values. The predictions 
+  #           for each group were generated from a statistical model, the ordered logistic regression model. 
+  #           The models were estimated in the R language using the the brms package. The predictions are the predicted probability of 
+  #           each group, with a margin of error. More precisely, they represent the mean of the posterior prediction, alongside 
+  #           the 95% credible interval.")
+  #   
+  # )
 )

@@ -5,6 +5,9 @@ library(ggplot2)
 library(plotly)
 
 load("dat1.rda")
-load("dat2.rda")
+load("data_water.rda")
+
+full_dat = df
+dat = df
 
 

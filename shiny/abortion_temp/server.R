@@ -104,7 +104,7 @@ server <- function(input, output) {
                hoverlabel = list(bgcolor = 'rgba(255, 255, 255, 0.4)', 
                                  font = list(color = 'darkgrey')), 
                hovermode = 'closest',
-               autosize = FALSE,
+               autosize = TRUE,
                margin = list ( l = 50, r = 0, b = 200, t = 0, pad = 2 ))
       
       base <- add_trace_if_selected(base, "Democrat", filter(dat, party_identification3 == 1), "Democratic Participants", az_color('pid3color1'), 'diamond')

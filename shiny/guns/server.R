@@ -109,11 +109,11 @@ server <- function(input, output) {
                hovermode = 'closest',
                autosize = TRUE)
       
-      base <- add_trace_if_selected(base, "Democrat", filter(dat, party_identification3 == 1), "Democratic Participants", az_color('pid3color1'), 'diamond')
-      base <- add_trace_if_selected(base, "Independent", filter(dat, party_identification3 == 2), "Independent Participants", az_color('pid3color2'), 'diamond')
-      base <- add_trace_if_selected(base, "Republican", filter(dat, party_identification3 == 3), "Republican Participants", az_color('pid3color3'), 'diamond')
+      base <- add_trace_if_selected(base, "Democrat", filter(dat, party_identification3 == 1), "Democrat", az_color('pid3color1'), 'diamond')
+      base <- add_trace_if_selected(base, "Independent", filter(dat, party_identification3 == 2), "Independent", az_color('pid3color2'), 'diamond')
+      base <- add_trace_if_selected(base, "Republican", filter(dat, party_identification3 == 3), "Republican", az_color('pid3color3'), 'diamond')
       
-      base <- add_trace_if_selected(base, "Non Hispanic White", filter(dat, white == 1), "Non Hispanic White", az_color("racecolor3"), 'circle')
+      base <- add_trace_if_selected(base, "Non Hispanic White", filter(dat, white == 1), "White", az_color("racecolor3"), 'circle')
       base <- add_trace_if_selected(base, "Latino", filter(dat, latino == 1), "Latino", az_color("racecolor2"), 'circle')
       base <- add_trace_if_selected(base, "Other Race", filter(dat, white == 0), "Other Race", az_color("racecolor1"), 'circle')
       
@@ -121,10 +121,10 @@ server <- function(input, output) {
       base <- add_trace_if_selected(base, "Moderate", filter(dat, conservative3 == 2), "Moderate", az_color("ideo3color2"), 'square')
       base <- add_trace_if_selected(base, "Conservative", filter(dat, conservative3 == 3), "Conservative", az_color("ideo3color3"), 'square')
       
-      base <- add_trace_if_selected(base, "18-29 years", filter(dat, age_cohort == "18-29"), "18-29 years", az_color("agecolor1"), 'triangle-up')
-      base <- add_trace_if_selected(base, "30-45 years", filter(dat, age_cohort == "30-44"), "30-44 years", az_color("agecolor2"), 'triangle-up')
-      base <- add_trace_if_selected(base, "45-65 years", filter(dat, age_cohort == "45-64"), "45-64 years", az_color("agecolor3"), 'triangle-up')
-      base <- add_trace_if_selected(base, "65+ years", filter(dat, age_cohort == "65+"), "65+ years", az_color("agecolor4"), 'triangle-up')
+      base <- add_trace_if_selected(base, "18-29 years", filter(dat, age_cohort == "18-29"), "18-29", az_color("agecolor1"), 'triangle-up')
+      base <- add_trace_if_selected(base, "30-45 years", filter(dat, age_cohort == "30-44"), "30-44", az_color("agecolor2"), 'triangle-up')
+      base <- add_trace_if_selected(base, "45-65 years", filter(dat, age_cohort == "45-64"), "45-64", az_color("agecolor3"), 'triangle-up')
+      base <- add_trace_if_selected(base, "65+ years", filter(dat, age_cohort == "65+"), "65+", az_color("agecolor4"), 'triangle-up')
       
       base <- add_trace_if_selected(base, "Male", filter(dat, female == 0), "Male", az_color("gendercolor1"), 'triangle-down')
       base <- add_trace_if_selected(base, "Female", filter(dat, female == 1), "Female", az_color("gendercolor2"), 'triangle-down')
@@ -165,22 +165,42 @@ server <- function(input, output) {
   
   output$hist_background <- create_plot_multi(
     outcome_name = "background_guns",
-    plot_title = "'Mandatory background checks\nfor all\nsales of\nfirearms?'",
+    plot_title = "",
     recode_scheme = "oppose5r"
   ) 
   
   output$hist_registry <- create_plot_multi(
     outcome_name = "registry_guns",
-    plot_title = "'Establishing a national gun registry'",
+    plot_title = "",
     recode_scheme = "oppose5r"
   )  
   
   
   output$hist_age <- create_plot_multi(
     outcome_name = "age_guns",
-    plot_title = "'Raising the age to own a firearm from 18 to 21?'",
+    plot_title = "",
     recode_scheme = "oppose5r"
   ) 
+
+  output$hist_background <- create_plot_multi(
+    outcome_name = "background_guns",
+    plot_title = "",
+    recode_scheme = "oppose5r"
+  ) 
+  
+  output$hist_registry <- create_plot_multi(
+    outcome_name = "registry_guns",
+    plot_title = "",
+    recode_scheme = "oppose5r"
+  )  
+  
+  
+  output$hist_age <- create_plot_multi(
+    outcome_name = "age_guns",
+    plot_title = "",
+    recode_scheme = "oppose5r"
+  ) 
+  
 
   
   observe({
