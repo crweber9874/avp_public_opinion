@@ -159,7 +159,7 @@ dat_contest <- run_models(
                             "authoritarianism", "CD", "rr", "faminc",  "kids_in_home", "college", "christian" ),
   data = df)
 
-save(dat_contest, file = "~/Dropbox/github_repos/avp-survey-data/avpSurvey/avp_public_opinion/shiny/contestation/data_water.RData")
+save(dat_contest, file = "~/Dropbox/github_repos/avp-survey-data/avpSurvey/avp_public_opinion/shiny/contestation/dat_contest.rda")
 save(df, file = "~/Dropbox/github_repos/avp-survey-data/avpSurvey/avp_public_opinion/shiny/contestation/dat1.rda")
 
 ### Bind everything and save

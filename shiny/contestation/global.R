@@ -5,6 +5,7 @@ library(ggplot2)
 library(plotly)
 
 load("dat1.rda")
-load("dat2.rda")
+load("dat_contest.rda")
 
-
+full_dat = df
+dat = df
