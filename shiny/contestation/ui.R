@@ -10,8 +10,8 @@ ui <- fluidPage(
   tags$head(
     tags$style(HTML("
       .navbar-default {
-        background-color: #0C234B;  /* Change this to your desired color */
-        border-color: #0C234B;      /* Change this to your desired color */
+        background-color: #0C234B; 
+        border-color: #0C234B;     
       }
       .navbar-default .navbar-brand {
         color: white;

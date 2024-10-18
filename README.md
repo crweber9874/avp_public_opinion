@@ -8,7 +8,7 @@ This repo includes code to clean, merge, analyze, recode, and visualize  public 
 $\texttt{recode.R}$: Various functions used in the analysis
 $\texttt{orderedLogit.R}$: The analysis consists of estimating a series of ordered logit models. The sript creates an "ordered logit"
 function, then I loop through a series of questions to estimate the models. The output is a series of tables, which I export to the $\texttt{data/}$ folder. 
-These data are used in the visualizations
+These data are used in the visualizations.
 
 
 
@@ -18,7 +18,7 @@ These data are used in the visualizations
 * buildDataAVP22.R: Cleans the AVP Wave 1 Panel. 
 * buildDataAVP24.R: Cleans the AVP Wave 2 Panel. 
 Each of these files exports a cleaned data set to the $\texttt{data/}$ folder.
-* combineDat.R}$: Combines the three datasets in a variety of ways. Each file is represented as a long and wide form. I created a single file, with common questions across datasets. I also created a panel dataset, by joining respondents from wave 1 to wave 2.
+* combineDat.R: Combines the three datasets in a variety of ways. Each file is represented as a long and wide form. I created a single file, with common questions across datasets. I also created a panel dataset, by joining respondents from wave 1 to wave 2.
 
 ### $\texttt{data/}$
 
@@ -33,13 +33,19 @@ Each of these files exports a cleaned data set to the $\texttt{data/}$ folder.
 * avp_panel.csv. The two wave panel data from Arizona in *wide* form, conducted by YouGov.
 * avp_w1w2_long.csv. The two wave panel data from Arizona in *long* form, conducted by YouGov.
 
-
+## Data Pipeline
+The raw files are in an external folder. The data cleaning process involves a unique file for each survey, which exports a 
+minimally cleaned up version of the data. These data are then combined, and further refined in combinedDat.R. Finally,
+The ordered_logit file is run to export predictions to the relveant shiny folder.
 
 # Visualization
 
 ### $\texttt{shiny/}$
 
 [shiny/contestation](https://viz.datascience.arizona.edu/avp_democracy/). Shiny app visualizing electoral contestion with the Wave I AVP data.
+[shiny/immigration](https://viz.datascience.arizona.edu/avp_democracy/). Shiny app visualizing electoral contestion with the Wave I AVP data.
+[shiny/guns](https://viz.datascience.arizona.edu/avp_democracy/). Shiny app visualizing electoral contestion with the Wave I AVP data.
+[shiny/abortion](https://viz.datascience.arizona.edu/avp_democracy/). Shiny app visualizing electoral contestion with the Wave I AVP data.
 
 ## Data Information
 

@@ -96,5 +96,5 @@ build_data_agree = function(prediction_data = dat,
                                          "Somewhat Agree", "Strongly Agree")))
   
   
-  return(list(model_df, data_df_noweights, data_df_weights))
+  return(list(model_df = model_df, data_df_noweights = data_df_noweights,data_df_weights= data_df_weights))
 }

@@ -5,7 +5,7 @@ library(tidyverse)
 path <- file.path("/Users/Chris/Dropbox/masterData/AZ_Midterm/UARZ0003_OUTPUT.sav")
 df <- read_sav(path)
 original_columns <- names(df)
-
+source("~/Dropbox/github_repos/avp-survey-data/avpSurvey/avp_public_opinion/R/recode.R")
 
 df <- df %>%
   mutate(
@@ -68,7 +68,6 @@ df <- df %>%
     sos_ofparty = ifelse(rank_order_SoS_2 == 1, 1, 0),
     sos_likedthem = ifelse(rank_order_SoS_3 == 1, 1, 0),
     sos_dislikedother = ifelse(rank_order_SoS_4 == 1, 1, 0),
-    sos_thepast = ifelse(rank_order_SoS_5 == 1, 1, 0),
     biden_ft = Biden,
     trump_ft = Trump,
     lake_ft = Lake,
@@ -94,7 +93,7 @@ df <- df %>%
       as.numeric(water1) == 2 ~ 4,
       as.numeric(water1) == 3 ~ 3,
       as.numeric(water1) == 4 ~ 2,
-      as.numeric(water1) == 5 ~ 2,
+      as.numeric(water1) == 5 ~ 1,
       TRUE ~ NA_real_
     ),
     immigration_to_az = recodeAVP(Q49, labels5, reverse = TRUE)$data,
@@ -119,8 +118,8 @@ df <- df %>%
     registry_guns = recode_policy_variables(gun2, reverse = TRUE),
     age_guns = recode_policy_variables(gun4, reverse = TRUE),
     assault_guns = ifelse(gun5 == 1 | gun5 == 2, 1, 0),
-    abortion_legal = recode(as.numeric(abortion1), `1` = 1, `2` = 2, `3` = 3, `4` = 4),
-    abortion_jail = recode_policy_variables(abortion2, reverse = TRUE),
+    abortion_legal = recode(as.numeric(abortion2), `1` = 1, `2` = 2, `3` = 3, `4` = 4, `5` = NA_real_),
+    abortion_jail = recode_policy_variables(abortion1, reverse = TRUE),
     violent_crime_importance = recode_policy_variables(crime2, reverse = TRUE),
     border_wall = recode_policy_variables(wall, reverse = TRUE),
     law_at_border = recode_policy_variables(law_at_border, reverse = TRUE),

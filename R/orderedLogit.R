@@ -1,7 +1,10 @@
-
+### Run a series of ordered logit models on the AVP Survey
 library(tidyverse)
 library(brms)
+library(dplyr)
+library(purrr)
 
+# Built from "buildDataAVP22.R #
 df = read.csv("~/Dropbox/github_repos/avp-survey-data/avpSurvey/avp_public_opinion/data/avp_wave_1_wide.csv") %>%
   # Create an age cohort variable based on the variable age ( in  years old in 2022)
   mutate(age_cohort = case_when(
@@ -21,7 +24,6 @@ ordered_model <- function(dependent_variable = "attend_march",
                           iterations = 1000,
                           chains = 4,
                           priors =   c(prior(normal(0, 10), class = "b")),
-                        
                           ...) {
   data[[dependent_variable]] <- factor(data[[dependent_variable]], ordered = TRUE)
   data[[independent_variable]] <- as.character(data[[independent_variable]])
@@ -60,8 +62,6 @@ ordered_model <- function(dependent_variable = "attend_march",
 
 
 
-library(dplyr)
-library(purrr)
 
 run_models <- function(dependent_variables, independent_variables, data, cores = 9, 
                        iterations = 2000, chains = 4, ...) {
@@ -78,60 +78,78 @@ run_models <- function(dependent_variables, independent_variables, data, cores =
   return(combined_results)
 }
 
-dat <- run_models(
+
+##### 
+
+dat_guns <- run_models(
+  cores = 10,
+  iterations = 1000,
+  dependent_variables = c( "background_guns", 
+                           "registry_guns", 
+                           "age_guns"),
+  independent_variables = c("party_identification3", "conservative3", "female", "age_cohort", "latino", "white", 
+                            "authoritarianism", "CD", "rr", "faminc",  "kids_in_home", "college", "christian" ),
+  data = df)
+
+save(dat_guns, file = "~/Dropbox/github_repos/avp-survey-data/avpSurvey/avp_public_opinion/shiny/guns/data_guns.RData")
+save(df, file = "~/Dropbox/github_repos/avp-survey-data/avpSurvey/avp_public_opinion/shiny/guns/dat1.rda")
+
+
+
+
+## These models need to be run in batches ####
+dat_immigration <- run_models(
   cores = 10,
   iterations = 1000,
   dependent_variables = c("immigration_rate_long", "smart_border", 
-                          "immigration_to_az",
-                          "background_guns", "registry_guns", 
-                          "age_guns",
-                          "abortion_legal", "abortion_jail"),
-  independent_variables = c("party_identification3", "conservative3", "female", "age_cohort", "latino", "white", 
+                          "immigration_to_az", "border_wall", 
+                          "citizen", "separate_parents", 
+                          "cali_migration"),
+  independent_variables = c("party_identification3", "conservative3", "female", 
+                            "age_cohort", "latino", "white", 
                             "authoritarianism", "CD", "rr", "faminc",  "kids_in_home", "college", "christian" ),
   data = df)
 
-save(dat, file = "~/Dropbox/github_repos/avp-survey-data/avpSurvey/avp_public_opinion/shiny/contestation/data3.RData")
+save(dat_immigration, file = "~/Dropbox/github_repos/avp-survey-data/avpSurvey/avp_public_opinion/shiny/immigration/data_immigration.rda")
+save(df, file = "~/Dropbox/github_repos/avp-survey-data/avpSurvey/avp_public_opinion/shiny/immigration/dat1.rda")
 
 
 
-library(dplyr)
-library(purrr)
 
-run_models <- function(dependent_variables, independent_variables, data, cores = 9, 
-                       iterations = 2000, chains = 4, ...) {
-  results <- lapply(dependent_variables, function(dep_var) {
-    lapply(independent_variables, function(ind_var) {
-      model_result <- ordered_model(dep_var, ind_var, data, cores, iterations, chains, ...)$dat
-      model_result <- model_result %>%
-        mutate(dependent_variable = dep_var, independent_variable = ind_var)
-      return(model_result)
-    })
-  })
-  
-  combined_results <- bind_rows(flatten(results))
-  return(combined_results)
-}
-
-dat <- run_models(
+## These models need to be run in batches ####
+dat_abortion <- run_models(
   cores = 10,
   iterations = 1000,
-  dependent_variables = c("water_supply", 
-                          "limit_water", 
-                          "tax_water",
-                          "border_wall", 
-                          "citizen", 
-                          "separate_parents", 
-                          "cali_migration"),
+  dependent_variables = c("abortion_legal", 
+                          "abortion_jail"),
   independent_variables = c("party_identification3", "conservative3", "female", "age_cohort", "latino", "white", 
                             "authoritarianism", "CD", "rr", "faminc",  "kids_in_home", "college", "christian" ),
   data = df)
 
-save(dat, file = "~/Dropbox/github_repos/avp-survey-data/avpSurvey/avp_public_opinion/shiny/contestation/data2.RData")
+save(dat_abortion, file = "~/Dropbox/github_repos/avp-survey-data/avpSurvey/avp_public_opinion/shiny/abortion/data_abortion.rda")
+save(df, file = "~/Dropbox/github_repos/avp-survey-data/avpSurvey/avp_public_opinion/shiny/abortion/dat1.rda")
 
+
+#### Water
+
+dat_water <- run_models(
+  cores = 10,
+  iterations = 1000,
+  dependent_variables = c( "limit_water", 
+                           "tax_water",
+                           "water_supply"),
+  independent_variables = c("party_identification3", "conservative3", "female", 
+                            "age_cohort", "latino", "white", 
+                            "authoritarianism", "CD", "rr", "faminc", 
+                            "kids_in_home", "college", "christian" ),
+  data = df)
+
+save(dat_water, file = "~/Dropbox/github_repos/avp-survey-data/avpSurvey/avp_public_opinion/shiny/water/data_water.RData")
+save(df, file = "~/Dropbox/github_repos/avp-survey-data/avpSurvey/avp_public_opinion/shiny/water/dat1.rda")
 
 
 # Example usage
-dat <- run_models(
+dat_contest <- run_models(
   cores = 10,
   iterations = 1000,
   dependent_variables = c("attend_march", "burn_flag" , "recount",
@@ -141,9 +159,10 @@ dat <- run_models(
                             "authoritarianism", "CD", "rr", "faminc",  "kids_in_home", "college", "christian" ),
   data = df)
 
-save(dat, file = "~/Dropbox/github_repos/avp-survey-data/avpSurvey/avp_public_opinion/shiny/contestation/data.RData")
+save(dat_contest, file = "~/Dropbox/github_repos/avp-survey-data/avpSurvey/avp_public_opinion/shiny/contestation/data_water.RData")
+save(df, file = "~/Dropbox/github_repos/avp-survey-data/avpSurvey/avp_public_opinion/shiny/contestation/dat1.rda")
 
-
+### Bind everything and save
 rm(list = ls())
 load("~/Dropbox/github_repos/avp-survey-data/avpSurvey/avp_public_opinion/shiny/contestation/data.RData")
 contestation = dat
@@ -152,7 +171,112 @@ policy1 = dat
 load("~/Dropbox/github_repos/avp-survey-data/avpSurvey/avp_public_opinion/shiny/contestation/data3.RData")
 policy2 = dat
 bind_rows(contestation, policy1, policy2) %>%
-  write.csv(file = "~/Dropbox/github_repos/avp-survey-data/avpSurvey/avp_public_opinion/shiny/contestation/contestation.csv", row.names = FALSE)
+  write.csv(file = "~/Dropbox/github_repos/avp-survey-data/avpSurvey/avp_public_opinion/shiny/
+            contestation/contestation.csv", row.names = FALSE)
+
+
+
+### Run a series of ordered logit models on the AVP Survey
+library(tidyverse)
+library(brms)
+library(dplyr)
+library(purrr)
+
+# Built from "buildDataAVP22.R #
+df = read.csv("~/Dropbox/github_repos/avp-survey-data/avpSurvey/avp_public_opinion/data/avp_wave_1_wide.csv") %>%
+  # Create an age cohort variable based on the variable age ( in  years old in 2022)
+  mutate(age_cohort = case_when(
+    age < 30 ~ "18-29",
+    age >= 30 & age < 45 ~ "30-45",
+    age >= 45 & age < 65 ~ "45-65",
+    age >= 65 ~ "65+",
+  ),
+  rr = ifelse(racial_resentment > quantile(racial_resentment, 0.5), 1, 0)
+  ) 
+
+library(brms)
+linear_model <- function(dependent_variable = "biden_ft", 
+                         independent_variable = "party_identification3",
+                         data = df, 
+                         cores = 9,
+                         iterations = 1000,
+                         chains = 4,
+                         priors =   c(prior(normal(0, 10), class = "b")),
+                         ...) {
+  data[[independent_variable]] <- as.character(data[[independent_variable]])
+  
+  formula <- as.formula(paste(dependent_variable, "~", independent_variable))
+  
+  # Define priors
+  
+  # Fit the model
+  model <- brm(
+    formula,
+    data = data, 
+    family = gaussian(), 
+    iter = iterations, 
+    chains = 4,
+    cores = getOption("mc.cores", cores),  # Adjust the number of cores as needed
+    prior = priors
+  )
+  
+  # survey = unique(model$data$survey)
+  dat = expand_grid( 
+    !!sym(independent_variable) := unique(na.omit(data[[independent_variable]]))) %>% as.data.frame() %>%
+    tidybayes::add_epred_draws(model) %>%
+    group_by(!!sym(independent_variable)) %>%
+    summarize(               
+      .value = mean(.epred),
+      .lower = quantile(.epred, 0.025),
+      .upper = quantile(.epred, 0.975)
+    )  %>%
+    mutate(
+      item = dependent_variable
+    )
+  return(list(model = model, dat= dat))
+}
+
+run_models <- function(dependent_variables, independent_variables, data, cores = 9, 
+                       iterations = 2000, chains = 4, ...) {
+  results <- lapply(dependent_variables, function(dep_var) {
+    lapply(independent_variables, function(ind_var) {
+      model_result <- linear_model(dep_var, ind_var, data, cores, iterations, chains, ...)$dat
+      model_result <- model_result %>%
+        mutate(dependent_variable = dep_var, independent_variable = ind_var)
+      return(model_result)
+    })
+  })
+  
+  combined_results <- bind_rows(flatten(results))
+  return(combined_results)
+}
+
+outcomes <- c(
+  "biden_ft",
+  "trump_ft",
+  "lake_ft",
+  "masters_ft",
+  "hobbs_ft",
+  "kelly_ft",
+  "finchem_ft",
+  "establishment_republican_feelings",
+  "maga_republican_feelings",
+  "establishment_democrat_feelings",
+  "progressive_democrat_feelings"
+)
+
+dat_fit <- run_models(
+  cores = 10,
+  iterations = 1000,
+  dependent_variables = outcomes,
+  independent_variables = c("party_identification3", "conservative3", "female", "age_cohort", "latino", "white", 
+                            "authoritarianism", "CD", "rr", "faminc",  "kids_in_home", "college", "christian" ),
+  data = df)
+
+save(dat_guns, file = "~/Dropbox/github_repos/avp-survey-data/avpSurvey/avp_public_opinion/shiny/ft/data_ft.RData")
+save(df, file = "~/Dropbox/github_repos/avp-survey-data/avpSurvey/avp_public_opinion/shiny/ft/dat1.rda")
+
+
 
 # 
 # g
