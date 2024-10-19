@@ -7,23 +7,6 @@ library(shiny)
 ui <- fluidPage(
   theme = shinytheme("cosmo"),  
   
-  tags$head(
-    tags$style(HTML("
-      .vertical-line {
-        border-left: 2px solid #000;
-        height: 100%;
-      }
-    "))
-  ),
-  
-  # tags$div(
-  #   tags$h2("Abortion", style = "color: black; font-weight: bold;")
-  # ),
-  
-  tags$hr(),
-  
-  br(),
-  
   fluidRow(
     column(
       width = 12,
@@ -31,12 +14,11 @@ ui <- fluidPage(
     ),
     column(
       width = 4,
-      height = 4,
       selectizeInput(
         inputId = 'multi',
         options = list(maxItems = 5),
         label = tags$span(
-          "Choose up to Five Group Characteristics to Visualize", style = "font-size: 1.5em; font-style: bold;"
+          "Characteristics to Visualize",
         ),
         choices = c("Independent", 
                     "Republican",
@@ -69,18 +51,6 @@ ui <- fluidPage(
         multiple = TRUE
       )
     ),
-    #,
-    # column(
-    #   width = 8,
-    #   tags$div(
-    #     tags$b("Explore characteristics of the Arizona Voter Survey, a representative sample of Arizona voters. 
-    #             Each graph includes interactive features. You may zoom in and out, rescale axes, and hover over data points to show their values.", 
-    #            style = "font-size: 2rem; font-weight: normal;")
-    #   )
-    # )
-  ),
-  
-  fluidRow(  
     column(
       width = 4,
       selectInput(
@@ -88,37 +58,25 @@ ui <- fluidPage(
         choices = c("No Survey Weights", "Survey Weights"),
         selected = "survey_weight",
         label = tags$span(
-          "Apply Survey Weights", style = "font-size: 1.8rem; font-style: normal;"
+          "Apply Survey Weights"
         )
       )
     )
   ),
   
-  br(),
+  br(),br(),
   
   fluidRow(
     column(
       width = 6,
       tags$h3("Abortion Legalization", style = "width: 100%; text-align: center;"),
-      plotlyOutput(outputId = "hist_legal", height = "400px")
+      plotlyOutput(outputId = "hist_legal")
       
     ),
     column(
       width = 6,
       tags$h3("Support or Oppose Mandatory 2-5 Year Prison Sentence for Abortion Providers", style = "width: 100%; text-align: center; padding: 0px 75px 0px 75px;"),
-      plotlyOutput(outputId = "hist_jail", height = "400px")
+      plotlyOutput(outputId = "hist_jail")
     )
   ),
-#   tags$div(
-#     tags$h3("Notes:"),
-#     tags$b("Visualize similarities and differences between groups in the 
-#             Arizona Voter Survey."),
-#     tags$b("Use the dropdown menus to visualize different groups and choose to apply survey weights. Each graph has interactive features, 
-#             where axes can be rescaled, the user can zoom in and out, and hover over data points to see the exact values. The predictions 
-#             for each group were generated from a statistical model, the ordered logistic regression model. 
-#             The models were estimated in the R language using the the brms package. The predictions are the predicted probability of 
-#             each group, with a margin of error. More precisely, they represent the mean of the posterior prediction, alongside 
-#             the 95% credible interval.")
-#            
-#   )
  )

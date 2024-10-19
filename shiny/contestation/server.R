@@ -123,8 +123,8 @@ server <- function(input, output) {
                       opacity = 0.3) %>% 
         layout(title = plot_title,
                showlegend = TRUE,
-               xaxis = list(title = "Category ", tickangle = -45),
-               yaxis = list(title = "Probability ", range = c(0, 1)),
+               xaxis = list(title = "", tickangle = -45),
+               yaxis = list(title = "Probability", range = c(0, 1)),
                hoverlabel = list(bgcolor = 'rgba(255, 255, 255, 0.4)', 
                                  font = list(color = 'darkgrey')), 
                hovermode = 'closest',

@@ -6,36 +6,15 @@ library(shiny)
 
 ui <- fluidPage(
   theme = shinytheme("cosmo"),  
-  # 
-  # tags$head(
-  #   tags$style(HTML("
-  #     .vertical-line {
-  #       border-left: 2px solid #000;
-  #       height: 100%;
-  #     }
-  #   "))
-  # ),
-  # 
-  # tags$div(
-  #   tags$h2("Water Policy", style = "color: black; font-weight: bold;")
-  # ),
-  # 
-  # tags$hr(),
-  # 
-  # br(),
   
   fluidRow(
-    column(
-      width = 12,
-      class = "vertical-line"
-    ),
     column(
       width = 6,
       selectizeInput(
         inputId = 'multi',
         options = list(maxItems = 5),
         label = tags$span(
-          "Choose up to Five Group Characteristics to Display", style = "font-size: 1.5em; font-style: bold;"
+          "Characteristics to Visualize"
         ),
         choices = c("Independent", 
                     "Republican",
@@ -68,28 +47,19 @@ ui <- fluidPage(
         multiple = TRUE
       )
     ),
-    # column(
-    #   width = 6,
-    #   tags$div(
-    #     tags$b("Explore characteristics of the Arizona Voter Survey, a representative sample of Arizona voters. 
-    #             Each graph includes interactive features. You may zoom in and out, rescale axes, and hover over data points to show their values.", 
-    #            style = "font-size: 2rem; font-weight: normal;")
-    #   )
-    # )
-  ),
-  fluidRow(column(
+    column(
     width = 6,
     selectInput(
       inputId = "surveyweight",
       choices = c("No Survey Weights", "Survey Weights"),
       selected = "survey_weight",
       label = tags$span(
-        "Apply Survey Weights", style = "font-size: 1.8rem; font-style: normal;"
+        "Apply Survey Weights"
       )
     )
   )
   ),
-  br(),
+  br(),br(),
   fluidRow(
     column(
       width = 6,
@@ -100,8 +70,6 @@ ui <- fluidPage(
       tags$h3("The United States should end the policy of granting citizenship to children of  foreign born in the U.S.", style = "width: 100%; text-align: center; padding: 0px 75px 0px 75px;"),
       plotlyOutput(outputId = "hist_citizen"))
   ),
-  
-  
   fluidRow(
     column(
       width = 6,
@@ -110,10 +78,9 @@ ui <- fluidPage(
     
     column(
       width = 6,
-      tags$h3("Increase spending on smart technology ", style = "width: 100%; text-align: center; padding: 0px 75px 0px 75px;"),
+      tags$h3("Increase spending on smart technology", style = "width: 100%; text-align: center; padding: 0px 75px 0px 75px;"),
       plotlyOutput(outputId = "hist_smart")),
   ),
-   
   fluidRow(
     column(
       width = 6,
@@ -125,27 +92,4 @@ ui <- fluidPage(
       plotlyOutput(outputId = "hist_az_imm")
     )
   ),
-
-  
-  
-  
-
-
-  br(),
-  br(),
-  br(),
-
-  
-  # br(),
-  # 
-  # tags$div(
-  #   tags$h3("Notes:"),
-  #   tags$b("Visualize similarities and differences between groups in the 
-  #           Arizona Voter Survey."),
-  #   tags$b("Use the dropdown menus to visualize different groups and choose to apply survey weights. Each graph has interactive features, 
-  #           where axes can be rescaled, the user can zoom in and out, and hover over data points to see the exact values. The predictions 
-  #           for each group were generated from a statistical model called the ordered logistic regression model. 
-  #           The models were estimated in the programming language R, using rstan. The predictions are the predicted 
-  #           probability of choosing a given category for a particular group.")
-  # )
 )
