@@ -6,23 +6,23 @@ library(shiny)
 
 ui <- fluidPage(
   theme = shinytheme("cosmo"),  
-  
-  tags$head(
-    tags$style(HTML("
-      .vertical-line {
-        border-left: 2px solid #000;
-        height: 100%;
-      }
-    "))
-  ),
-  
-  tags$div(
-    tags$h2("Immigration", style = "color: black; font-weight: bold;")
-  ),
-  
-  tags$hr(),
-  
-  br(),
+  # 
+  # tags$head(
+  #   tags$style(HTML("
+  #     .vertical-line {
+  #       border-left: 2px solid #000;
+  #       height: 100%;
+  #     }
+  #   "))
+  # ),
+  # 
+  # tags$div(
+  #   tags$h2("Water Policy", style = "color: black; font-weight: bold;")
+  # ),
+  # 
+  # tags$hr(),
+  # 
+  # br(),
   
   fluidRow(
     column(
@@ -68,57 +68,84 @@ ui <- fluidPage(
         multiple = TRUE
       )
     ),
-    column(
-      width = 6,
-      selectInput(
-        inputId = "surveyweight",
-        choices = c("No Survey Weights", "Survey Weights"),
-        selected = "survey_weight",
-        label = tags$span(
-          "Apply Survey Weights", style = "font-size: 1.8rem; font-style: normal;"
-        )
-      )
-    )
+    # column(
+    #   width = 6,
+    #   tags$div(
+    #     tags$b("Explore characteristics of the Arizona Voter Survey, a representative sample of Arizona voters. 
+    #             Each graph includes interactive features. You may zoom in and out, rescale axes, and hover over data points to show their values.", 
+    #            style = "font-size: 2rem; font-weight: normal;")
+    #   )
+    # )
   ),
-   fluidRow(
-    column(
-      width = 6,
-      tags$div(
-        tags$b("Explore characteristics of the Arizona Voter Survey, a representative sample of Arizona voters. 
-                Each graph includes interactive features. You may zoom in and out, rescale axes, and hover over data points to show their values.", 
-               style = "font-size: 2rem; font-weight: normal;")
+  fluidRow(column(
+    width = 6,
+    selectInput(
+      inputId = "surveyweight",
+      choices = c("No Survey Weights", "Survey Weights"),
+      selected = "survey_weight",
+      label = tags$span(
+        "Apply Survey Weights", style = "font-size: 1.8rem; font-style: normal;"
       )
-    ),
+    )
+  )
+  ),
+  br(),
+  fluidRow(
     column(
       width = 6,
-      plotlyOutput(outputId = "hist_immigration")
-    )
+      tags$h3("Number of immigrants who are allowed into the United States ", style = "width: 100%; text-align: center; padding: 0px 75px 0px 75px;"),
+      plotlyOutput(outputId = "hist_immigration")),
+    column(
+      width = 6,
+      tags$h3("The United States should end the policy of granting citizenship to children of  foreign born in the U.S.", style = "width: 100%; text-align: center; padding: 0px 75px 0px 75px;"),
+      plotlyOutput(outputId = "hist_citizen"))
   ),
   
-
-  br(),
   
   fluidRow(
     column(
       width = 6,
-      plotlyOutput(outputId = "hist_separate")
-    ),
+      tags$h3("End the separation of parents and children at the border", style = "width: 100%; text-align: center; padding: 0px 75px 0px 75px;"),
+      plotlyOutput(outputId = "hist_separate")),
+    
     column(
       width = 6,
-      plotlyOutput(outputId = "hist_citizen")
+      tags$h3("Increase spending on smart technology ", style = "width: 100%; text-align: center; padding: 0px 75px 0px 75px;"),
+      plotlyOutput(outputId = "hist_smart")),
+  ),
+   
+  fluidRow(
+    column(
+      width = 6,
+      tags$h3("Californians moving to the state is adversely affecting Arizona", style = "width: 100%; text-align: center; padding: 0px 75px 0px 75px;"),
+      plotlyOutput(outputId = "hist_cali")),
+    column(
+      width = 6,
+      tags$h3("International migration to the state is adversely affecting Arizona", style = "width: 100%; text-align: center; padding: 0px 75px 0px 75px;"),
+      plotlyOutput(outputId = "hist_az_imm")
     )
   ),
+
   
+  
+  
+
+
   br(),
+  br(),
+  br(),
+
   
-  tags$div(
-    tags$h3("Notes:"),
-    tags$b("Visualize similarities and differences between groups in the 
-            Arizona Voter Survey."),
-    tags$b("Use the dropdown menus to visualize different groups and choose to apply survey weights. Each graph has interactive features, 
-            where axes can be rescaled, the user can zoom in and out, and hover over data points to see the exact values. The predictions 
-            for each group were generated from a statistical model called the ordered logistic regression model. 
-            The models were estimated in the programming language R, using rstan. The predictions are the predicted 
-            probability of choosing a given category for a particular group.")
-  )
+  # br(),
+  # 
+  # tags$div(
+  #   tags$h3("Notes:"),
+  #   tags$b("Visualize similarities and differences between groups in the 
+  #           Arizona Voter Survey."),
+  #   tags$b("Use the dropdown menus to visualize different groups and choose to apply survey weights. Each graph has interactive features, 
+  #           where axes can be rescaled, the user can zoom in and out, and hover over data points to see the exact values. The predictions 
+  #           for each group were generated from a statistical model called the ordered logistic regression model. 
+  #           The models were estimated in the programming language R, using rstan. The predictions are the predicted 
+  #           probability of choosing a given category for a particular group.")
+  # )
 )

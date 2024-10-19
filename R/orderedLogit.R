@@ -273,7 +273,7 @@ dat_fit <- run_models(
                             "authoritarianism", "CD", "rr", "faminc",  "kids_in_home", "college", "christian" ),
   data = df)
 
-save(dat_guns, file = "~/Dropbox/github_repos/avp-survey-data/avpSurvey/avp_public_opinion/shiny/ft/data_ft.RData")
+save(dat_fit, file = "~/Dropbox/github_repos/avp-survey-data/avpSurvey/avp_public_opinion/shiny/ft/data_ft.RData")
 save(df, file = "~/Dropbox/github_repos/avp-survey-data/avpSurvey/avp_public_opinion/shiny/ft/dat1.rda")
 
 
