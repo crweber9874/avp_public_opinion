@@ -59,7 +59,7 @@ ui <- fluidPage(
       )
     ),
   ),
-  br(),
+  br(),br(),
   fluidRow(
     column(
       width = 6,
@@ -72,9 +72,8 @@ ui <- fluidPage(
       
       plotlyOutput(outputId = "hist_tax")
     ),
-    
-    ),
-   fluidRow(
+  ),
+  fluidRow(
     column(
       width = 6,
       offset = 3,
@@ -83,33 +82,15 @@ ui <- fluidPage(
       plotlyOutput(outputId = "hist_limit")
     )
   ),
-  
-
-  br(),
-  br(),
-  br(),
-  
-  fluidRow(
-    column(
-      width = 6,
-      plotlyOutput(outputId = "hist_separate")
-    ),
-    column(
-      width = 6,
-      plotlyOutput(outputId = "hist_citizen")
-    )
-  ),
-  
-  # br(),
-  # 
-  # tags$div(
-  #   tags$h3("Notes:"),
-  #   tags$b("Visualize similarities and differences between groups in the 
-  #           Arizona Voter Survey."),
-  #   tags$b("Use the dropdown menus to visualize different groups and choose to apply survey weights. Each graph has interactive features, 
-  #           where axes can be rescaled, the user can zoom in and out, and hover over data points to see the exact values. The predictions 
-  #           for each group were generated from a statistical model called the ordered logistic regression model. 
-  #           The models were estimated in the programming language R, using rstan. The predictions are the predicted 
-  #           probability of choosing a given category for a particular group.")
-  # )
+  # todo (weber): These are referenced here but not defined in the server.R file. 
+  # fluidRow(
+  #   column(
+  #     width = 6,
+  #     plotlyOutput(outputId = "hist_separate")
+  #   ),
+  #   column(
+  #     width = 6,
+  #     plotlyOutput(outputId = "hist_citizen")
+  #   )
+  # ),
 )
