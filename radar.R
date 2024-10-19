@@ -53,23 +53,7 @@ summary_df <- df %>%
 
 
 
-# Load necessary libraries
-library(dplyr)
-library(plotly)
 
-# Assuming summary_df and outcomes are already defined
-# Data preparation
-dem <- summary_df %>%
-  filter(party_identification3 %in% c(1)) %>%
-  select(-party_identification3) %>% as.numeric()
-
-ind <- summary_df %>%
-  filter(party_identification3 %in% c(2)) %>%
-  select(-party_identification3) %>% as.numeric()
-
-rep <- summary_df %>%
-  filter(party_identification3 %in% c(3)) %>%
-  select(-party_identification3) %>% as.numeric()
 
 # Create radar plot
 fig <- plot_ly(
@@ -107,6 +91,10 @@ fig <- fig %>%
     fillcolor = 'rgba(0, 0, 255, 0.3)',  # Blue fill with transparency
     line = list(color = "purple"),
     marker = list(color = 'rgba(255, 255, 255, 0.5)')) 
+
+
+
+
 
 add_trace(
   r = ind,

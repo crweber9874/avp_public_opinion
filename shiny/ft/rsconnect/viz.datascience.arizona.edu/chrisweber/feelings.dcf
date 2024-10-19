@@ -1,0 +1,12 @@
+name: feelings
+title: feelings
+username: chrisweber
+account: chrisweber
+server: viz.datascience.arizona.edu
+hostUrl: https://viz.datascience.arizona.edu/__api__
+appId: 1141
+bundleId: 5876
+url: https://viz.datascience.arizona.edu:443/content/c0183818-afa6-4ac3-aabf-d38f36fd51c9/
+version: 1
+asMultiple: FALSE
+asStatic: FALSE
