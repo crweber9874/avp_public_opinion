@@ -60,7 +60,7 @@ ui <- fluidPage(
     )
   ),
   
-  br(),
+  br(),br(),
   
   fluidRow(
     column(
@@ -75,9 +75,6 @@ ui <- fluidPage(
       plotlyOutput(outputId = "hist_registry")
     )
   ),
-  
-  br(),
-  
   fluidRow(
     column(
       width = 6,
@@ -86,5 +83,4 @@ ui <- fluidPage(
       plotlyOutput(outputId = "hist_age")
     )
   ),
-
 )

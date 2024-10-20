@@ -43,22 +43,6 @@ server <- function(input, output) {
       })
     }
     
-    if (recode_scheme == "abortion") {
-      dat_reactive_outcome <- reactive({
-        model_df_outcome() %>%
-          mutate(.category = recode(.category, 
-                                    `4` = "Abortion Not Legal",
-                                    `3` = "First Trimester",
-                                    `2` = "First and Second Trimester",
-                                    `1` = "Completely Legal at Any Point"),
-                 .value = as.numeric(.value)) %>%
-          mutate(.category = factor(.category, 
-                                    levels = c("Abortion Not Legal", 
-                                               "First Trimester", 
-                                               "First and Second Trimester", 
-                                               "Completely Legal at Any Point")))
-      })
-    }
     if (recode_scheme == "water") {
       dat_reactive_outcome <- reactive({
         model_df_outcome() %>%
@@ -77,7 +61,6 @@ server <- function(input, output) {
                                                "Not Serious")))
       })
     }
-    
     
     add_trace_if_selected <- function(base, condition, data, name, color, symbol = 'circle') {
       if(condition %in% input$multi) {
@@ -186,14 +169,11 @@ server <- function(input, output) {
     plot_title = "",
     recode_scheme = "oppose5r"
   ) 
-  
   output$hist_limit <- create_plot_multi(
     outcome_name = "limit_water",
     plot_title = "",
     recode_scheme = "oppose5r"
   )  
-
-  
   output$hist_criticize <- create_plot_multi(
     outcome_name = "new_election",
     plot_title = "",
@@ -221,15 +201,6 @@ server <- function(input, output) {
   ) 
   observe({
     print(input$multi)
-    # if(input[["partyChoice"]][[1]]) {
-    #   party_choice("Republican")
-    # } else {
-    #   party_choice(FALSE)
-    # }
-    # print(party_choice())
   })
-  
-  
-  
 }
 
