@@ -16,14 +16,14 @@ ui <- fluidPage(
         selected = "party_identification3",
         options = list(maxItems = 1),
         label = tags$span(
-          "Characteristics to Visualize"
+          "Group Characteristics to Display"
         ),
         choices = c("Party Identification" = "party_identification3",
                     "Political Ideology" = "conservative3",
                     "Education" = "college",
                     "Racial Resentment" = "rr",
                     "White" = "white",
-                    # "Authoritarian" = "authoritarianism",
+                    "Social Conformity" = "authoritarianism",
                     "Gender" = "female",
                     "Kids in Home" = "kids_in_home",
                     "Family Income" = "faminc",
@@ -45,10 +45,9 @@ ui <- fluidPage(
   ),
   fluidRow(
     column(
-      width = 6,
-      height = 6,
-      offset = 2,
-      plotlyOutput("radar", height = 600, width = 600),
+      width = 10,
+      offset = 1,
+      plotlyOutput("radar", height = "400px", width = "90%")  # Use percentage for width
     )
   )
   

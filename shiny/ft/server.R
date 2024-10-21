@@ -22,8 +22,8 @@ output$feelings <- renderPlotly({
                                 fill = party,
                                 text = paste0("Category: ", party, "<br>Value: ", round(.upper, 2)))) +
     facet_wrap(as.formula(paste("~", input$group)), nrow = 3) +
-    geom_bar(stat = "identity", position = position_dodge(width = 0.9), alpha = 0.4) +
-    geom_errorbar(width = 0.2, position = position_dodge(width = 0.9), alpha = 0.4) +
+    geom_bar(stat = "identity", position = position_dodge(width = 0.9), alpha = 0.9) +
+    geom_errorbar(width = 0.2, position = position_dodge(width = 0.9), alpha = 0.9) +
     labs(
       title = "",
       x = "",
@@ -89,7 +89,7 @@ output$radar <- renderPlotly({
         text = paste0('<b>', group_name, ' evaluation of </b>', "<br><b>", labels, '</b>: ', round(group_data, 1), "/100"),
         hoverinfo = 'text',
         line = list(color = "black"),
-        marker = list(color = 'rgba(255, 255, 255, 0.5)')  # White with slight transparency
+        marker = list(color = 'rgba(255, 255, 255, 0.5)')  # 
       )
   }
   

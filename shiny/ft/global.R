@@ -72,14 +72,16 @@ data = dat_fit %>%
                            `3` = "Conservative"),
     conservative3 = factor(conservative3, levels = c("Liberal", "Moderate", "Conservative")),
     rr = ifelse(rr == 1, "High Racial Resentment", "Low Racial Resentment"),
+    authoritarianism = ifelse(authoritarianism == 1, "High Social Conformity Orientation", "Low Social Conformity Orientation"),
     christian = ifelse(christian == 1, "Christian", "Non Christian"),
     faminc = ifelse(faminc == 1, "$80k or more", "Less than $80k"),
     kids_in_home = ifelse(kids_in_home == 1, "Kids live at home", "No kids in home"),
     female = ifelse(female == 1, "Female", "Male"),
-    white = ifelse(white == 1, "White", "Other Racial Group"),
+    white = ifelse(white == 1, "White", "Person of Color"),
     latino = ifelse(latino == 1, "Latino", "Non Latino")) %>%
   mutate(dv = recode(dependent_variable, !!!recode_vector)) %>%
-  mutate(party = recode(dependent_variable, !!!recode_vector_party)) 
+  mutate(party = recode(dependent_variable, !!!recode_vector_party)) %>%
+  filter(item != "finchem_ft")
   # recode authoritarianism as 1 or 0 with everything in between as NA
   # mutate(authoritarianism = case_when(
   #   authoritarianism ==  0 ~  0,
@@ -104,8 +106,8 @@ outcomes <- c(
 )
 labels <- list(
   "Joe Biden",
-  "Katie Hobbs (Governor)",
-  "Mark Kelly (Senate)",
+  "Katie Hobbs",
+  "Mark Kelly",
   "Progressive Democrats",
   "Establishment Democrats",
   "Donald Trump",
