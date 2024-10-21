@@ -13,7 +13,8 @@ df = read.csv("~/Dropbox/github_repos/avp-survey-data/avpSurvey/avp_public_opini
     age >= 45 & age < 65 ~ "45-65",
     age >= 65 ~ "65+",
   ),
-  rr = ifelse(racial_resentment > quantile(racial_resentment, 0.5), 1, 0)
+  rr = ifelse(racial_resentment > quantile(racial_resentment, 0.5), 1, 0),
+  authoritarianism = ifelse(authoritarianism > quantile(authoritarianism, 0.5), 1, 0)
   ) 
 
 library(brms)
@@ -191,7 +192,9 @@ df = read.csv("~/Dropbox/github_repos/avp-survey-data/avpSurvey/avp_public_opini
     age >= 45 & age < 65 ~ "45-65",
     age >= 65 ~ "65+",
   ),
-  rr = ifelse(racial_resentment > quantile(racial_resentment, 0.5), 1, 0)
+  rr = ifelse(racial_resentment > quantile(racial_resentment, 0.5), 1, 0),
+  authoritarianism = ifelse(authoritarianism > quantile(authoritarianism, 0.5), 1, 0)
+  
   ) 
 
 library(brms)
@@ -273,7 +276,7 @@ dat_fit <- run_models(
                             "authoritarianism", "CD", "rr", "faminc",  "kids_in_home", "college", "christian" ),
   data = df)
 
-save(dat_fit, file = "~/Dropbox/github_repos/avp-survey-data/avpSurvey/avp_public_opinion/shiny/ft/data_ft.RData")
+save(dat_fit, file = "~/Dropbox/github_repos/avp-survey-data/avpSurvey/avp_public_opinion/shiny/ft/data_ft.rda")
 save(df, file = "~/Dropbox/github_repos/avp-survey-data/avpSurvey/avp_public_opinion/shiny/ft/dat1.rda")
 
 
