@@ -200,17 +200,17 @@ server <- function(input, output) {
       base <- add_trace_if_selected(base, "Moderate", filter(dat, conservative3 == 2), "Moderate", az_color("ideo3color2"), 'square')
       base <- add_trace_if_selected(base, "Conservative", filter(dat, conservative3 == 3), "Conservative", az_color("ideo3color3"), 'square')
       
+      
       base <- add_trace_if_selected(base, "18-29 years", filter(dat, age_cohort == "18-29"), "18-29", az_color("agecolor1"), 'triangle-up')
-      base <- add_trace_if_selected(base, "30-45 years", filter(dat, age_cohort == "30-44"), "30-44", az_color("agecolor2"), 'triangle-up')
-      base <- add_trace_if_selected(base, "45-65 years", filter(dat, age_cohort == "45-64"), "45-64", az_color("agecolor3"), 'triangle-up')
+      base <- add_trace_if_selected(base, "30-44 years", filter(dat, age_cohort == "30-44"), "30-44", az_color("agecolor2"), 'triangle-up')
+      base <- add_trace_if_selected(base, "45-64 years", filter(dat, age_cohort == "45-64"), "45-64", az_color("agecolor3"), 'triangle-up')
       base <- add_trace_if_selected(base, "65+ years", filter(dat, age_cohort == "65+"), "65+", az_color("agecolor4"), 'triangle-up')
       
       base <- add_trace_if_selected(base, "Male", filter(dat, female == 0), "Male", az_color("gendercolor1"), 'triangle-down')
       base <- add_trace_if_selected(base, "Female", filter(dat, female == 1), "Female", az_color("gendercolor2"), 'triangle-down')
       
-      base <- add_trace_if_selected(base, "Authoritarian", filter(dat, authoritarianism == 1), "Authoritarian", az_color("authcolor1"), 'star')
-      base <- add_trace_if_selected(base, "Non-Authoritarian", filter(dat, authoritarianism == 0), "Non-Authoritarian", az_color("authcolor2"), 'star')
-      
+      base <- add_trace_if_selected(base, "High Social Conformity", filter(dat, authoritarianism == 1), "High Social Conformity", az_color("authcolor1"), 'star')
+      base <- add_trace_if_selected(base, "Low Social Conformity", filter(dat, authoritarianism == 0), "Low Social Conformity", az_color("authcolor2"), 'star')
       
       base <- add_trace_if_selected(base, "Christian", filter(dat, christian == 1), "Christian", az_color("christiancolor1"), 'pentagon')
       base <- add_trace_if_selected(base, "Non Christian", filter(dat, christian == 0), "Non Christian", az_color("christiancolor2"), 'pentagon') 

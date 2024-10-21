@@ -5,8 +5,8 @@ account: chrisweber
 server: viz.datascience.arizona.edu
 hostUrl: https://viz.datascience.arizona.edu/__api__
 appId: 1139
-bundleId: 5872
-url: https://viz.datascience.arizona.edu:443/content/f7060762-1d3c-4bc1-ab17-893cd14c11b8/
+bundleId: 5885
+url: https://viz.datascience.arizona.edu:443/water/
 version: 1
 asMultiple: FALSE
 asStatic: FALSE

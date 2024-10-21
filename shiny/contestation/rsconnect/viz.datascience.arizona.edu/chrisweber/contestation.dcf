@@ -5,7 +5,7 @@ account: chrisweber
 server: viz.datascience.arizona.edu
 hostUrl: https://viz.datascience.arizona.edu/__api__
 appId: 1133
-bundleId: 5871
+bundleId: 5887
 url: https://viz.datascience.arizona.edu:443/democracy_and_contestation/
 version: 1
 asMultiple: FALSE

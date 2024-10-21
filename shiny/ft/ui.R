@@ -18,18 +18,18 @@ ui <- fluidPage(
         label = tags$span(
           "Group Characteristics to Display"
         ),
-        choices = c("Party Identification" = "party_identification3",
-                    "Political Ideology" = "conservative3",
-                    "Education" = "college",
-                    "Racial Resentment" = "rr",
-                    "White" = "white",
-                    "Social Conformity" = "authoritarianism",
-                    "Gender" = "female",
-                    "Kids in Home" = "kids_in_home",
-                    "Family Income" = "faminc",
-                    "Latino" = "latino",
-                    "Religion" = "christian"),
-              
+        choices = list(
+          `Politics` = list("Party Identification" = "party_identification3",
+                            "Political Ideology" = "conservative3"),
+          `Psychology` = list("Social Conformity" = "authoritarianism",
+                              "Racial Resentment" = "rr"),
+          `Demographics` = list("Education" = "college",
+                              "Race" = "white",
+                              "Gender" = "female",
+                              "Kids in Home" = "kids_in_home",
+                              "Family Income" = "faminc",
+                              "Latino" = "latino",
+                              "Religion" = "christian")),
         multiple = FALSE,
     )
     ),

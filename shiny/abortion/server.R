@@ -125,8 +125,9 @@ server <- function(input, output) {
       base <- add_trace_if_selected(base, "Male", filter(dat, female == 0), "Male", az_color("gendercolor1"), 'triangle-down')
       base <- add_trace_if_selected(base, "Female", filter(dat, female == 1), "Female", az_color("gendercolor2"), 'triangle-down')
       
-      base <- add_trace_if_selected(base, "Authoritarian", filter(dat, authoritarianism == 1), "Authoritarian", az_color("authcolor1"), 'star')
-      base <- add_trace_if_selected(base, "Non-Authoritarian", filter(dat, authoritarianism == 0), "Non-Authoritarian", az_color("authcolor2"), 'star')
+      base <- add_trace_if_selected(base, "High Social Conformity", filter(dat, authoritarianism == 1), "High Social Conformity", az_color("authcolor1"), 'star')
+      base <- add_trace_if_selected(base, "Low Social Conformity", filter(dat, authoritarianism == 0), "Low Social Conformity", az_color("authcolor2"), 'star')
+      
       
       
       base <- add_trace_if_selected(base, "Christian", filter(dat, christian == 1), "Christian", az_color("christiancolor1"), 'pentagon')
