@@ -37,32 +37,12 @@ ui <- fluidPage(
   br(),
   fluidRow(
     column(
-      offset = 1,
       width = 5,
-      height = 6,
-      plotlyOutput("feelings", height = 600, width = 600),
-    )
-  ),
-  fluidRow(
+      plotlyOutput("feelings", height = 600),
+    ),
     column(
-      width = 10,
-      offset = 1,
-      plotlyOutput("radar", height = "400px", width = "90%")  # Use percentage for width
+      width = 7,
+      plotlyOutput("radar")
     )
   )
-  
-
-
-  # br(),
-  # 
-  # tags$div(
-  #   tags$h3("Notes:"),
-  #   tags$b("Visualize similarities and differences between groups in the 
-  #           Arizona Voter Survey."),
-  #   tags$b("Use the dropdown menus to visualize different groups and choose to apply survey weights. Each graph has interactive features, 
-  #           where axes can be rescaled, the user can zoom in and out, and hover over data points to see the exact values. The predictions 
-  #           for each group were generated from a statistical model called the ordered logistic regression model. 
-  #           The models were estimated in the programming language R, using rstan. The predictions are the predicted 
-  #           probability of choosing a given category for a particular group.")
-  # )
 )
