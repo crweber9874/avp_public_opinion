@@ -1,12 +1,12 @@
-name: guns
-title: guns
+name: presentationdash
+title: presentationDash
 username: chrisweber
 account: chrisweber
 server: viz.datascience.arizona.edu
 hostUrl: https://viz.datascience.arizona.edu/__api__
-appId: 1138
-bundleId: 5932
-url: https://viz.datascience.arizona.edu:443/guns/
+appId: 1143
+bundleId: 5895
+url: https://viz.datascience.arizona.edu:443/content/deb89e55-f00a-48e5-b8b0-fc45c03f5e7a/
 version: 1
 asMultiple: FALSE
 asStatic: FALSE

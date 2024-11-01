@@ -116,7 +116,7 @@ server <- function(input, output) {
       
       base <- add_trace_if_selected(base, "Non Hispanic White", filter(dat, white == 1), "White", az_color("racecolor3"), 'circle')
       base <- add_trace_if_selected(base, "Latino", filter(dat, latino == 1), "Latino", az_color("racecolor2"), 'circle')
-      base <- add_trace_if_selected(base, "Other Race", filter(dat, white == 0), "Other Race", az_color("racecolor1"), 'circle')
+      base <- add_trace_if_selected(base, "Other Race or Ethnic Group", filter(dat, white == 0), "Other Race", az_color("racecolor1"), 'circle')
       
       base <- add_trace_if_selected(base, "Liberal", filter(dat, conservative3 == 1), "Liberal", az_color("ideo3color1"), 'square')
       base <- add_trace_if_selected(base, "Moderate", filter(dat, conservative3 == 2), "Moderate", az_color("ideo3color2"), 'square')

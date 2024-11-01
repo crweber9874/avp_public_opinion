@@ -25,7 +25,7 @@ ui <- fluidPage(
                         `Household Income` = list("Less than $80k", "More than $80k"),
                         `Ideology` = list("Liberal", "Moderate", "Conservative"),
                         `Kids in Home` = list("No Kids in Home", "Kids in Home"),
-                        `Race/Ethnicity` = list("Latino", "Non Hispanic White", "Person of Color"),
+                        `Race/Ethnicity` = list("Latino", "Non Hispanic White", "Other Race or Ethnic Group"),
                         `Religious Denomination` = list("Christian", "Non Christian"),
                         `Congressional District (CD)` = list("CD1", "CD2", "CD3", "CD4", "CD5", "CD6", "CD7", "CD8", "CD9")
                         

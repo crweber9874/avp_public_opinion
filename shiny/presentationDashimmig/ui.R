@@ -6,6 +6,7 @@ library(shiny)
 
 ui <- fluidPage(
   theme = shinytheme("cosmo"),  
+  
   fluidRow(
     column(
       width = 4,
@@ -24,7 +25,7 @@ ui <- fluidPage(
                         `Household Income` = list("Less than $80k", "More than $80k"),
                         `Ideology` = list("Liberal", "Moderate", "Conservative"),
                         `Kids in Home` = list("No Kids in Home", "Kids in Home"),
-                        `Race/Ethnicity` = list("Latino", "Non Hispanic White", "Other Race or Ethnic Group"),
+                        `Race/Ethnicity` = list("Latino", "Non Hispanic White", "Person of Color"),
                         `Religious Denomination` = list("Christian", "Non Christian"),
                         `Congressional District (CD)` = list("CD1", "CD2", "CD3", "CD4", "CD5", "CD6", "CD7", "CD8", "CD9")
                         
@@ -44,40 +45,32 @@ ui <- fluidPage(
       )
     )
   ),
-  
 
   br(),br(),
   fluidRow(
     column(
-      width = 6,
-      tags$h4("Arizona, like other southwestern states, is facing cuts to its water supply. To what extent do you believe that the water supply in the state is a problem? ", style = "width: 100%; text-align: center; padding: 0px 75px 0px 75px;"),
-      plotlyOutput(outputId = "hist_supply")
-    ),
+      width = 4,
+      tags$h4("Number of immigrants who are allowed into the United States ", style = "width: 100%; text-align: center; padding: 0px 75px 0px 75px;"),
+      plotlyOutput(outputId = "hist_immigration")),
     column(
-      width = 6,
-      tags$h4("To what extent do you support mandatory water conservation strategies, such as taxing  excessive water usage?", style = "width: 100%; text-align: center; padding: 0px 75px 0px 75px;"),
-      
-      plotlyOutput(outputId = "hist_tax")
-    ),
-  ),
-  fluidRow(
+      width = 4,
+      tags$h4("The United States should end the policy of granting citizenship to children of  foreign born in the U.S.", style = "width: 100%; text-align: center; padding: 0px 75px 0px 75px;"),
+      plotlyOutput(outputId = "hist_citizen")),
     column(
-      width = 6,
-      offset = 3,
-      tags$h4("To what extent do you support mandatory water conservation strategies, such as limiting the amount of water usage per household?", style = "width: 100%; text-align: center; padding: 0px 75px 0px 75px;"),
-      
-      plotlyOutput(outputId = "hist_limit")
-    )
+      width = 4,
+      tags$h4("End the separation of parents and children at the border", style = "width: 100%; text-align: center; padding: 0px 75px 0px 75px;"),
+      plotlyOutput(outputId = "hist_separate"))
   ),
-  # todo (weber): These are referenced here but not defined in the server.R file. 
-  # fluidRow(
-  #   column(
-  #     width = 6,
-  #     plotlyOutput(outputId = "hist_separate")
-  #   ),
-  #   column(
-  #     width = 6,
-  #     plotlyOutput(outputId = "hist_citizen")
-  #   )
-  # ),
+# 
+#   fluidRow(
+#     column(
+#       width = 4,
+#       tags$h4("Californians moving to the state is adversely affecting Arizona", style = "width: 100%; text-align: center; padding: 0px 75px 0px 75px;"),
+#       plotlyOutput(outputId = "hist_cali")),
+#     column(
+#       width = 4,
+#       tags$h4("International migration to the state is adversely affecting Arizona", style = "width: 100%; text-align: center; padding: 0px 75px 0px 75px;"),
+#       plotlyOutput(outputId = "hist_az_imm")
+#     )
+#   ),
 )

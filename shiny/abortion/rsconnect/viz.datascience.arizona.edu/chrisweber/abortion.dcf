@@ -5,7 +5,7 @@ account: chrisweber
 server: viz.datascience.arizona.edu
 hostUrl: https://viz.datascience.arizona.edu/__api__
 appId: 1137
-bundleId: 5881
+bundleId: 5930
 url: https://viz.datascience.arizona.edu:443/abortion/
 version: 1
 asMultiple: FALSE

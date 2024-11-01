@@ -77,7 +77,7 @@ data = dat_fit %>%
     faminc = ifelse(faminc == 1, "$80k or more", "Less than $80k"),
     kids_in_home = ifelse(kids_in_home == 1, "Kids live at home", "No kids in home"),
     female = ifelse(female == 1, "Female", "Male"),
-    white = ifelse(white == 1, "White", "Other Race or Ethnic Group"),
+    white = ifelse(white == 1, "White", "Person of Color"),
     latino = ifelse(latino == 1, "Latino", "Non Latino")) %>%
   mutate(dv = recode(dependent_variable, !!!recode_vector)) %>%
   mutate(party = recode(dependent_variable, !!!recode_vector_party)) %>%
